@@ -12,10 +12,10 @@ Imports System.Windows
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("MyDict")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyDescription("MyDict")> 
+<Assembly: AssemblyCompany("Tuyen")> 
 <Assembly: AssemblyProduct("MyDict")> 
-<Assembly: AssemblyCopyright("Copyright ©  2017")> 
+<Assembly: AssemblyCopyright("Copyright ©  2017 - nktuyen@hotmail.com")> 
 <Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(false)>
 

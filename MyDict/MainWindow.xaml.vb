@@ -1,5 +1,6 @@
 ﻿Class MainWindow
     Private m_bPlaceHolderKeyword As Boolean = False
+    Private m_EV As New Dictionary("EV.accdb")
 
     Private Function ViewVocabulary(ByVal strVocabulary As String) As Boolean
         Return False
@@ -51,16 +52,18 @@
 
     End Sub
 
+    Private Sub wndMain_Closed(sender As Object, e As EventArgs) Handles wndMain.Closed
+        m_EV.Close()
+        If (IsDecryptedDictionary("EV.accdb")) Then
+            Call EncryptDictionary("EV.accdb")
+        End If
+    End Sub
+
     Private Sub wndMain_Loaded(sender As Object, e As RoutedEventArgs) Handles wndMain.Loaded
         If (Not IsDecryptedDictionary("EV.accdb")) Then
             Call DecryptDictionary("EV.accdb")
         End If
-    End Sub
-
-    Private Sub wndMain_Unloaded(sender As Object, e As RoutedEventArgs) Handles wndMain.Unloaded
-        If (IsDecryptedDictionary("EV.accdb")) Then
-            Call EncryptDictionary("EV.accdb")
-        End If
+        m_EV.Open()
     End Sub
 
     Private Sub txtKeyword_GotFocus(sender As Object, e As RoutedEventArgs) Handles txtKeyword.GotFocus
