@@ -55,7 +55,7 @@
     Private Sub wndMain_Closed(sender As Object, e As EventArgs) Handles wndMain.Closed
         m_EV.Close()
         If (m_EV.IsDecryptedDictionary()) Then
-            Call m_EV.EncryptDictionary()
+            'Call m_EV.EncryptDictionary()
         End If
         Call SaveDatabaseRecentPath(GetApplicationRegistryPath(), "RecentPath", m_EV.Path)
     End Sub
@@ -63,7 +63,7 @@
     Private Sub wndMain_Loaded(sender As Object, e As RoutedEventArgs) Handles wndMain.Loaded
         m_EV.Path = GetDatabaseRecentPath(GetApplicationRegistryPath(), "RecentPath")
         If (Not m_EV.IsDecryptedDictionary()) Then
-            Call m_EV.DecryptDictionary()
+            'Call m_EV.DecryptDictionary()
         End If
         m_EV.Open("8891")
     End Sub
