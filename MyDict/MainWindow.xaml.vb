@@ -65,7 +65,7 @@
         If (Not m_EV.IsDecryptedDictionary()) Then
             Call m_EV.DecryptDictionary()
         End If
-        m_EV.Open("Tunk.2017")
+        m_EV.Open("8891")
     End Sub
 
     Private Sub txtKeyword_GotFocus(sender As Object, e As RoutedEventArgs) Handles txtKeyword.GotFocus
