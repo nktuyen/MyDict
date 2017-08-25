@@ -2,7 +2,7 @@
 Imports System.IO
 
 Public Class Dictionary
-    Private stdHeader() As Byte = {0, 1, 0, 0, 83, 116, 97, 110, 100, 97, 114, 100, 32, 65, 67, 69, 32, 68, 66, 0, 2, 0, 0, 0, 181, 110, 3, 98, 96, 9, 194, 85, 233, 169, 103, 114, 64, 63, 0, 156, 126, 159, 144, 255, 133, 154, 49, 197, 121, 186, 237, 48, 188, 223, 204, 157, 99, 217, 228, 195, 159, 70, 251, 138, 188, 78}
+    Private stdHeader() As Byte = {0, 1, 0, 0, 83, 116, 97, 110, 100, 97, 114, 100, 32, 65, 67, 69, 32, 68, 66, 0}
     Private m_Path As String = ""
     Dim m_conn As OleDb.OleDbConnection = Nothing
     Private m_tblSystem As New DataTable("System")
