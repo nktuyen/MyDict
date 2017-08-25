@@ -99,6 +99,7 @@ Public Class Dictionary
         For i As Integer = 0 To stdHeader.Length - 1
             dicHeader(i) = stdHeader(i) Xor 183
         Next
+        writer.BaseStream.Seek(0, SeekOrigin.Begin)
         writer.Write(dicHeader)
         writer.Close()
         dicFile.Close()
@@ -136,6 +137,7 @@ Public Class Dictionary
             Return False
         End If
         '
+        writer.BaseStream.Seek(0, SeekOrigin.Begin)
         writer.Write(stdHeader)
         writer.Close()
         dicFile.Close()
@@ -163,6 +165,12 @@ Public Class Dictionary
     Private ReadOnly Property ConnString
         Get
             Return "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & m_Path
+        End Get
+    End Property
+
+    Public ReadOnly Property State As System.Data.ConnectionState
+        Get
+            Return m_conn.State
         End Get
     End Property
 
