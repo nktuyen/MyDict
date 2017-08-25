@@ -55,13 +55,13 @@
     Private Sub wndMain_Closed(sender As Object, e As EventArgs) Handles wndMain.Closed
         m_EV.Close()
         If (IsDecryptedDictionary("EV.accdb")) Then
-            Call EncryptDictionary("EV.accdb")
+            'Call EncryptDictionary("EV.accdb")
         End If
     End Sub
 
     Private Sub wndMain_Loaded(sender As Object, e As RoutedEventArgs) Handles wndMain.Loaded
         If (Not IsDecryptedDictionary("EV.accdb")) Then
-            Call DecryptDictionary("EV.accdb")
+            'Call DecryptDictionary("EV.accdb")
         End If
         m_EV.Open()
     End Sub

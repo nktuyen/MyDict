@@ -14,7 +14,7 @@ Public Class Dictionary
 
     Private ReadOnly Property ConnString
         Get
-            Return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & m_Path
+            Return "Provider=Microsoft.Jet.OLEDB.4.0;Data source=" & m_Path
         End Get
     End Property
 
@@ -28,11 +28,11 @@ Public Class Dictionary
         End If
         Try
             m_conn = New OleDb.OleDbConnection(ConnString)
+            m_conn.Open()
         Catch ex As Exception
             m_conn = Nothing
             Return False
         End Try
-        m_conn.Open()
         Return True
     End Function
 
