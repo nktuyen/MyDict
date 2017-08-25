@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports Microsoft.Win32
+
 Module Utils
 
     Public Function StdDatabaseHeader(ByVal strPath1 As String, ByVal strPath2 As String) As Integer
@@ -34,7 +36,22 @@ Module Utils
         Return res
     End Function
 
-    Public Function GetDatabaseRecentPath() As String
+    Public Function GetApplicationRegistryPath(Optional ByVal Company As String = "Tuyen", Optional ByVal AppName As String = "MyDict") As String
+        Dim strCompany As String = Company
+        Dim strAppname As String = AppName
+        Dim strPath As String = Registry.CurrentUser.Name
+        Dim assembly As System.Reflection.Assembly = System.Reflection.Assembly.GetExecutingAssembly()
+        If (Not assembly Is Nothing) Then
+            Dim fileInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location)
+            strCompany = fileInfo.CompanyName
+            strAppname = fileInfo.ProductName
+        End If
+        '
+        strPath = strPath & "\SOFTWARE\" & strCompany & "\" & strAppname
+        Return strPath
+    End Function
+
+    Public Function GetDatabaseRecentPath(ByVal AppKey As String, ByVal ValueName As String) As String
         Dim strCompany As String = "Tuyen"
         Dim strAppname As String = "MyDict"
         Dim strPath As String = Directory.GetCurrentDirectory()
@@ -48,7 +65,7 @@ Module Utils
         '
         strPath = strPath & "\" & strAppname & ".dic"
         Try
-            Dim strTemp As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\" & strCompany & "\" & strAppname, "RecentPath", Nothing)
+            Dim strTemp As String = My.Computer.Registry.GetValue(AppKey, ValueName, Nothing)
             If (Not strTemp Is Nothing) Then
                 strPath = strTemp
             End If
@@ -56,5 +73,19 @@ Module Utils
             '
         End Try
         Return strPath
+    End Function
+
+    Public Function SaveDatabaseRecentPath(ByVal AppKey As String, ByVal ValueName As String, ByVal strPath As String) As Boolean
+        If (strPath Is Nothing) Then
+            Return False
+        End If
+        '
+        Try
+            Call My.Computer.Registry.SetValue(AppKey, ValueName, strPath)
+        Catch ex As Exception
+            Return False
+        End Try
+        '
+        Return True
     End Function
 End Module
