@@ -1,6 +1,6 @@
 ﻿Class MainWindow
     Private m_bPlaceHolderKeyword As Boolean = False
-    Private m_EV As New Dictionary("EV.accdb")
+    Private m_EV As New Dictionary()
 
     Private Function ViewVocabulary(ByVal strVocabulary As String) As Boolean
         Return False
@@ -54,14 +54,15 @@
 
     Private Sub wndMain_Closed(sender As Object, e As EventArgs) Handles wndMain.Closed
         m_EV.Close()
-        If (IsDecryptedDictionary("EV.accdb")) Then
-            'Call EncryptDictionary("EV.accdb")
+        If (m_EV.IsDecryptedDictionary()) Then
+            Call m_EV.EncryptDictionary()
         End If
     End Sub
 
     Private Sub wndMain_Loaded(sender As Object, e As RoutedEventArgs) Handles wndMain.Loaded
-        If (Not IsDecryptedDictionary("EV.accdb")) Then
-            'Call DecryptDictionary("EV.accdb")
+        m_EV.Path = GetDatabaseRecentPath()
+        If (Not m_EV.IsDecryptedDictionary()) Then
+            Call m_EV.DecryptDictionary()
         End If
         m_EV.Open()
     End Sub
