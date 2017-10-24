@@ -11,11 +11,12 @@ namespace MyDict
 {
     public partial class WordViewer : UserControl
     {
-        public event EventHandler OnRefreshClicked;
-        public event EventHandler OnLoveClicked;
-        public event EventHandler OnPrintClicked;
-        public event EventHandler OnEditClicked;
-        public event EventHandler OnPreferencesClicked;
+        public event EventHandler OnRefresh;
+        public event EventHandler OnLove;
+        public event EventHandler OnPrinting;
+        public event EventHandler OnEdit;
+        public event EventHandler OnPreferences;
+        public event EventHandler OnAddNew;
 
         public WordViewer()
         {
@@ -24,42 +25,55 @@ namespace MyDict
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            if (null != OnRefreshClicked)
+            if (null != OnRefresh)
             {
-                this.OnRefreshClicked(sender, e);
+                this.OnRefresh(sender, e);
             }
         }
 
         private void btnLove_Click(object sender, EventArgs e)
         {
-            if(null != OnLoveClicked)
+            if(null != OnLove)
             {
-                this.OnLoveClicked(sender, e);
+                this.OnLove(sender, e);
             }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            if (null != OnPrintClicked)
+            if (null != OnPrinting)
             {
-                this.OnPrintClicked(sender, e);
+                this.OnPrinting(sender, e);
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (null != OnEditClicked)
+            if (null != OnEdit)
             {
-                this.OnEditClicked(sender, e);
+                this.OnEdit(sender, e);
             }
         }
 
         private void btnPreferences_Click(object sender, EventArgs e)
         {
-            if (null != OnPreferencesClicked)
+            if (null != OnPreferences)
             {
-                this.OnPreferencesClicked(sender, e);
+                this.OnPreferences(sender, e);
             }
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            if (null != OnAddNew)
+            {
+                this.OnAddNew(sender, e);
+            }
+        }
+
+        private void WordViewer_VisibleChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

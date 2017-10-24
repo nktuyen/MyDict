@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
 
 namespace MyDict
 {
@@ -52,7 +53,9 @@ namespace MyDict
 
         private void wrdViewer_OnEditClicked(object sender, EventArgs e)
         {
-            MessageBox.Show("Edit");
+            wrdEditor.Mode = EditorModes.Edit;
+            wrdEditor.Show();
+            wrdViewer.Hide();
         }
 
         private void wrdViewer_OnLoveClicked(object sender, EventArgs e)
@@ -62,7 +65,8 @@ namespace MyDict
 
         private void wrdViewer_OnPreferencesClicked(object sender, EventArgs e)
         {
-            MessageBox.Show("Preferences");
+            frmSettings frm = new frmSettings();
+            frm.ShowDialog();
         }
 
         private void wrdViewer_OnPrintClicked(object sender, EventArgs e)
@@ -73,6 +77,46 @@ namespace MyDict
         private void wrdViewer_OnRefreshClicked(object sender, EventArgs e)
         {
             MessageBox.Show("Refresh");
+        }
+
+        private void wrdViewer_OnAddNew(object sender, EventArgs e)
+        {
+            wrdEditor.Mode = EditorModes.AddNew;
+            wrdEditor.Show();
+            wrdViewer.Hide();
+        }
+
+        private void wrdEditor_OnClose(object sender, EventArgs e)
+        {
+            wrdEditor.Hide();
+            wrdViewer.Show();
+        }
+
+        private void wrdEditor_OnEdit(object sender, EventArgs e)
+        {
+            wrdViewer.Hide();
+            wrdEditor.Mode = EditorModes.Edit;
+            wrdEditor.Show();
+        }
+
+        private void wrdEditor_OnNew(object sender, EventArgs e)
+        {
+            wrdViewer.Hide();
+            wrdEditor.Mode = EditorModes.AddNew;
+            wrdEditor.Show();
+        }
+
+        private void wrdEditor_OnSave(object sender, EventArgs e)
+        {
+            wrdEditor.Mode = EditorModes.None;
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(wrdEditor.Visible)
+            {
+                wrdEditor_OnClose(this, new EventArgs());
+            }
         }
     }
 }

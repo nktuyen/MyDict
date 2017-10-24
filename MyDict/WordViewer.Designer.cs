@@ -33,12 +33,13 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnPreferences = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAddNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(145, 0);
+            this.btnRefresh.Location = new System.Drawing.Point(108, 1);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(60, 25);
             this.btnRefresh.TabIndex = 0;
@@ -49,7 +50,7 @@
             // btnLove
             // 
             this.btnLove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLove.Location = new System.Drawing.Point(209, 0);
+            this.btnLove.Location = new System.Drawing.Point(170, 1);
             this.btnLove.Name = "btnLove";
             this.btnLove.Size = new System.Drawing.Size(40, 25);
             this.btnLove.TabIndex = 1;
@@ -60,7 +61,7 @@
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(253, 0);
+            this.btnPrint.Location = new System.Drawing.Point(212, 1);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(40, 25);
             this.btnPrint.TabIndex = 2;
@@ -71,7 +72,7 @@
             // btnPreferences
             // 
             this.btnPreferences.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPreferences.Location = new System.Drawing.Point(341, 0);
+            this.btnPreferences.Location = new System.Drawing.Point(338, 1);
             this.btnPreferences.Name = "btnPreferences";
             this.btnPreferences.Size = new System.Drawing.Size(74, 26);
             this.btnPreferences.TabIndex = 3;
@@ -82,7 +83,7 @@
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(297, 0);
+            this.btnEdit.Location = new System.Drawing.Point(254, 1);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(40, 25);
             this.btnEdit.TabIndex = 4;
@@ -90,12 +91,24 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // btnAddNew
+            // 
+            this.btnAddNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddNew.Location = new System.Drawing.Point(296, 1);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(40, 25);
+            this.btnAddNew.TabIndex = 5;
+            this.btnAddNew.Text = "New";
+            this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
             // WordViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnPreferences);
             this.Controls.Add(this.btnPrint);
@@ -103,6 +116,7 @@
             this.Controls.Add(this.btnRefresh);
             this.Name = "WordViewer";
             this.Size = new System.Drawing.Size(416, 266);
+            this.VisibleChanged += new System.EventHandler(this.WordViewer_VisibleChanged);
             this.ResumeLayout(false);
 
         }
@@ -114,5 +128,6 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnPreferences;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnAddNew;
     }
 }

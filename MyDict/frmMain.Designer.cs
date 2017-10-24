@@ -36,6 +36,7 @@
             this.lblFilter = new System.Windows.Forms.Label();
             this.lbVocabularies = new System.Windows.Forms.ListBox();
             this.wrdViewer = new MyDict.WordViewer();
+            this.wrdEditor = new MyDict.WordEditor();
             this.splitter.Panel1.SuspendLayout();
             this.splitter.Panel2.SuspendLayout();
             this.splitter.SuspendLayout();
@@ -66,6 +67,7 @@
             // 
             this.splitter.Panel2.BackColor = System.Drawing.Color.White;
             this.splitter.Panel2.Controls.Add(this.wrdViewer);
+            this.splitter.Panel2.Controls.Add(this.wrdEditor);
             this.splitter.Panel2MinSize = 146;
             this.splitter.Size = new System.Drawing.Size(580, 356);
             this.splitter.SplitterDistance = 250;
@@ -145,11 +147,28 @@
             this.wrdViewer.Name = "wrdViewer";
             this.wrdViewer.Size = new System.Drawing.Size(322, 354);
             this.wrdViewer.TabIndex = 7;
-            this.wrdViewer.OnRefreshClicked += new System.EventHandler(this.wrdViewer_OnRefreshClicked);
-            this.wrdViewer.OnLoveClicked += new System.EventHandler(this.wrdViewer_OnLoveClicked);
-            this.wrdViewer.OnPrintClicked += new System.EventHandler(this.wrdViewer_OnPrintClicked);
-            this.wrdViewer.OnEditClicked += new System.EventHandler(this.wrdViewer_OnEditClicked);
-            this.wrdViewer.OnPreferencesClicked += new System.EventHandler(this.wrdViewer_OnPreferencesClicked);
+            this.wrdViewer.OnRefresh += new System.EventHandler(this.wrdViewer_OnRefreshClicked);
+            this.wrdViewer.OnLove += new System.EventHandler(this.wrdViewer_OnLoveClicked);
+            this.wrdViewer.OnPrinting += new System.EventHandler(this.wrdViewer_OnPrintClicked);
+            this.wrdViewer.OnEdit += new System.EventHandler(this.wrdViewer_OnEditClicked);
+            this.wrdViewer.OnPreferences += new System.EventHandler(this.wrdViewer_OnPreferencesClicked);
+            this.wrdViewer.OnAddNew += new System.EventHandler(this.wrdViewer_OnAddNew);
+            // 
+            // wrdEditor
+            // 
+            this.wrdEditor.AutoScroll = true;
+            this.wrdEditor.BackColor = System.Drawing.Color.White;
+            this.wrdEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wrdEditor.Location = new System.Drawing.Point(0, 0);
+            this.wrdEditor.Mode = MyDict.EditorModes.None;
+            this.wrdEditor.Name = "wrdEditor";
+            this.wrdEditor.Size = new System.Drawing.Size(322, 354);
+            this.wrdEditor.TabIndex = 8;
+            this.wrdEditor.Visible = false;
+            this.wrdEditor.OnAddVocabulary += new System.EventHandler(this.wrdEditor_OnNew);
+            this.wrdEditor.OnEdit += new System.EventHandler(this.wrdEditor_OnEdit);
+            this.wrdEditor.OnSave += new System.EventHandler(this.wrdEditor_OnSave);
+            this.wrdEditor.OnClose += new System.EventHandler(this.wrdEditor_OnClose);
             // 
             // frmMain
             // 
@@ -163,6 +182,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             this.splitter.Panel1.ResumeLayout(false);
             this.splitter.Panel1.PerformLayout();
             this.splitter.Panel2.ResumeLayout(false);
@@ -180,6 +200,7 @@
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.ListBox lbVocabularies;
         private WordViewer wrdViewer;
+        private WordEditor wrdEditor;
     }
 }
 

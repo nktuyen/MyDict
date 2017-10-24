@@ -16,7 +16,7 @@ CREATE TABLE [dbo].[Phonetic]
 (
 	[vocabulary_id] bigint NOT NULL IDENTITY (1, 1),
 	[class_id] bigint NOT NULL,
-	[phonetic] varchar(255) NOT NULL,
+	[phonetic] nvarchar(255) NOT NULL,
 	[id] bigint NOT NULL
 )
 GO
