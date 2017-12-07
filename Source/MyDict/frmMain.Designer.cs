@@ -153,6 +153,7 @@
             this.wrdViewer.OnEdit += new System.EventHandler(this.wrdViewer_OnEditClicked);
             this.wrdViewer.OnPreferences += new System.EventHandler(this.wrdViewer_OnPreferencesClicked);
             this.wrdViewer.OnAddNew += new System.EventHandler(this.wrdViewer_OnAddNew);
+            this.wrdViewer.Load += new System.EventHandler(this.wrdViewer_Load);
             // 
             // wrdEditor
             // 

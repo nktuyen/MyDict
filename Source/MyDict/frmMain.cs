@@ -15,6 +15,7 @@ namespace MyDict
         public frmMain()
         {
             InitializeComponent();
+            Settings.Instance.Load();
         }
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -34,11 +35,18 @@ namespace MyDict
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            Settings.Instance.Save();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            frmLogin f = new frmLogin();
+            if(f.ShowDialog()!= DialogResult.OK)
+            {
+                this.Close();
+                return;
+            }
+
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             if (null != assembly)
             {
@@ -76,7 +84,7 @@ namespace MyDict
 
         private void wrdViewer_OnRefreshClicked(object sender, EventArgs e)
         {
-            MessageBox.Show("Refresh");
+           
         }
 
         private void wrdViewer_OnAddNew(object sender, EventArgs e)
@@ -117,6 +125,11 @@ namespace MyDict
             {
                 wrdEditor_OnClose(this, new EventArgs());
             }
+        }
+
+        private void wrdViewer_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -1,7 +1,7 @@
 USE [mydict]
 GO
 
-/****** Object:  Table [dbo].[tbl_language]    Script Date: 12/7/2017 2:12:17 PM ******/
+/****** Object:  Table [dbo].[tbl_language]    Script Date: 12/7/2017 7:19:22 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,7 +12,6 @@ CREATE TABLE [dbo].[tbl_language](
 	[id] [bigint] IDENTITY(1,1) NOT NULL,
 	[name] [nvarchar](255) NOT NULL,
 	[title] [nvarchar](255) NOT NULL,
-	[country_id] [bigint] NOT NULL,
  CONSTRAINT [PK_tbl_language] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC,
