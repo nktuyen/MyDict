@@ -1,7 +1,7 @@
 USE [mydict]
 GO
 
-/****** Object:  Table [dbo].[tbl_right]    Script Date: 12/7/2017 1:43:44 PM ******/
+/****** Object:  Table [dbo].[tbl_right]    Script Date: 12/7/2017 2:12:37 PM ******/
 SET ANSI_NULLS ON
 GO
 
