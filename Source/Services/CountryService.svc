@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="nktuyen.mydict.CountryService" CodeBehind="~/App_Code/CountryService.cs" %>
