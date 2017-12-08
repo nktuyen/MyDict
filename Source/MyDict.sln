@@ -23,8 +23,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Services", "Services\", "{7
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "60258"
+		SlnRelativePath = "Services\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
+EndProject
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "MyDict.Web", "MyDict.Web\MyDict.Web.phpproj", "{2B72EA31-1EC8-4228-9507-D84275B1F1F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +43,8 @@ Global
 		{7E5B920A-360D-4273-BA34-0FB2D4C69B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E5B920A-360D-4273-BA34-0FB2D4C69B2B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E5B920A-360D-4273-BA34-0FB2D4C69B2B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{2B72EA31-1EC8-4228-9507-D84275B1F1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B72EA31-1EC8-4228-9507-D84275B1F1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

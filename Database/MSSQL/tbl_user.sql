@@ -18,6 +18,7 @@ CREATE TABLE [dbo].[tbl_user](
 	[birth_day] [smallint] NULL,
 	[birth_month] [smallint] NULL,
 	[birth_year] [int] NULL,
+	[gender] [int] NULL,
 	[registered_date] [timestamp] NOT NULL,
 	[type] [bigint] NOT NULL,
  CONSTRAINT [PK_tbl_users] PRIMARY KEY CLUSTERED 
