@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using System.Diagnostics;
+using System.Net;
+using System.IO;
 
 namespace MyDict
 {
@@ -16,11 +19,34 @@ namespace MyDict
         {
             InitializeComponent();
             Settings.Instance.Load();
+            cbFilter.Items.Add("(No Filter");
+            cbFilter.SelectedIndex = 0;
         }
 
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Settings settings = Settings.Instance;
+            string url = "http://localhost/services/index.php?__svc__=user&__usr__=" + settings.Account.UserName+"&__pwd__="+ Crypto.ToSHA256(settings.Account.Password)+"&__cri__=id&__val__=all";
+            Debug.Print(url);
+            WebRequest request = WebRequest.Create(url);
+            WebResponse response = request.GetResponse();
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            var httpResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<HttpResponse>(responseString);
+            if(httpResponse.Status == 200)
+            {
+                try
+                {
+                    tbl_user[]    arr = Newtonsoft.Json.JsonConvert.DeserializeObject<tbl_user[]>(httpResponse.Data.ToString(), s);
+                    foreach(var obj in arr)
+                    {
+                        tbl_user user = (tbl_user)obj;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Debug.Print(ex.Message);
+                }
+            }
         }
 
         private void txtKeyword_TextChanged(object sender, EventArgs e)

@@ -56,6 +56,7 @@ class HttpGETProcessor extends HttpProcessor {
                         unset( $request[USER_KEY] );
                         unset( $request[PWD_KEY] );
                         unset( $request[SVC_KEY] );
+                        $request[CMD_KEY] = \HttpCommand::GET;
                         $service->serv($request, $response);
                     }
                 }

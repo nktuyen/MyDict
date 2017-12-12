@@ -31,7 +31,7 @@
                 return false;
             }
             
-            $cmd = "SELECT name FROM ".\Tables::User." WHERE name='".$user."' AND password='".hash("sha256", $pwd)."'";
+            $cmd = "SELECT name FROM ".\Tables::User." WHERE name='".$user."' AND password='". $pwd."'";
             $query = $conn->createQuery($cmd);
             if(is_null($query))  {
                 return false;

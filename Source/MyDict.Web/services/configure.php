@@ -7,6 +7,16 @@
     define("USER_KEY", "__usr__");
     define("PWD_KEY", "__pwd__");
     define("SVC_KEY", "__svc__");
+    define("CMD_KEY", "__cmd__");
+    define("CRITE_KEY", "__cri__");
+    define("VAL_KEY", "__val__");
+
+    abstract class HttpCommand {
+        const GET = 'GET';
+        const INSERT = 'INSERT';
+        const DELETE = 'DELETE';
+        const UPDATE = 'UPDATE';
+    }
 
     abstract class Tables {
         const   User = 'tbl_user';
