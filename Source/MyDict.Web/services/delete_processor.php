@@ -1,9 +1,10 @@
 <?php
+namespace Processors;
 
-require_once('./http_processor.php');
+require_once('http_processor.php');
 
 class HttpDELETEProcessor extends HttpProcessor {
-    protected function __constructor() {
+    protected function __construct() {
 
     }
 

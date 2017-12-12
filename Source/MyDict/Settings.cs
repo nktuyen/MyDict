@@ -116,8 +116,13 @@ namespace MyDict
             get
             {
                 string appDataFolder = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                string appName = System.AppDomain.CurrentDomain.FriendlyName;
+                string appName = "MyDict";
                 string fullPath = appDataFolder + "\\" + appName + "\\";
+                System.IO.DirectoryInfo directoryInfo = new DirectoryInfo(fullPath);
+                if (!directoryInfo.Exists)
+                {
+                    directoryInfo.Create();
+                }
                 return fullPath;
             }
         }

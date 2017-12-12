@@ -1,17 +1,14 @@
 <?php
+namespace Processors;
 
-require_once('./http_processor.php');
+require_once('http_processor.php');
 
 class HttpPOSTProcessor extends HttpProcessor {
-    protected function __constructor() {
+    protected function __construct() {
 
     }
 
     private function __clone() {
-
-    }
-
-    private function HttpPOSTProcessor() {
 
     }
 
@@ -25,7 +22,6 @@ class HttpPOSTProcessor extends HttpProcessor {
     }
 
     public function process($request) {
-        echo __CLASS__.'::'.__FUNCTION__."()\n";
         var_dump($request);
     }
 };

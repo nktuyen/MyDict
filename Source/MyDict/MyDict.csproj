@@ -51,6 +51,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -62,11 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\nktuyen.mydict\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Crypto.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -126,19 +122,6 @@
     <EmbeddedResource Include="WordViewer.resx">
       <DependentUpon>WordViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Connected Services\nktuyen.mydict\CountryService.wsdl" />
-    <None Include="Connected Services\nktuyen.mydict\CountryService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\nktuyen.mydict\CountryService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\nktuyen.mydict\CountryService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\nktuyen.mydict\MyDict.nktuyen.mydict.Country.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="MyDict.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -155,24 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\nktuyen.mydict\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\nktuyen.mydict\CountryService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\nktuyen.mydict\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\nktuyen.mydict\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\nktuyen.mydict\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

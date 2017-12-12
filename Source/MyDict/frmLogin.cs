@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
 
 namespace MyDict
 {
@@ -24,8 +25,10 @@ namespace MyDict
 
         private bool Login(string user, string pwd)
         {
+            var request = (HttpWebRequest)WebRequest.Create('localhost');
+            var postData = "__svc__="
+            request.Method = "GET";
             
-            return true;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -38,7 +41,7 @@ namespace MyDict
             Account account = Settings.Instance.Account;
 
             account.UserName = txtUsername.Text;
-            account.Password = Crypto.ToSHA256(txtPassword.Text);
+            account.Password = txtPassword.Text;
             account.RememberLogin = chbRemember.Checked;
             DialogResult = DialogResult.OK;
             this.Close();

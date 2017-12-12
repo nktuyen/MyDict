@@ -1,22 +1,20 @@
 <?php
+namespace Processors;
 
-require_once('./configure.php');
-require_once('./http_processor.php');
-require_once('./authentication.php');
-
-use System\Authenticator;
+use Authentication\Authenticator;
 use Services\ServiceManager;
 
-class HttpGETProcessor extends HttpProcessor {
-    protected function __constructor() {
 
+require_once('configure.php');
+require_once('http_processor.php');
+require_once('authentication.php');
+
+class HttpGETProcessor extends HttpProcessor {
+    protected function __construct() {
+        
     }
 
     private function __clone() {
-
-    }
-
-    private function HttpGETProcessor() {
 
     }
 
@@ -32,32 +30,45 @@ class HttpGETProcessor extends HttpProcessor {
     public function process($request) {
         $authenticator = Authenticator::getInstance();
         $response = new HttpResponse();
+        
         if($authenticator) {
             $user = $request[USER_KEY];
             $pwd = $request[PWD_KEY];
             $svc = $request[SVC_KEY];
-            
             if( (is_null($user)) || (is_null($pwd)) ) {
                 $response->status = HttpStatus::NotFound;
-                parent::writeJSON($response);
+                $response->write();
                 return;
             }
             else {
-                if($authenticator->authenticate($user, $pwd)) {
-                    $service = Services\ServiceManager::getInstance()->getService($svc);
-                    
-                    echo "service=$service";
+                if($authenticator->validate($user, $pwd)) {
+                    $serviceManager = ServiceManager::getInstance();
+                    $service = null;
+                    if(!is_null(serviceManager)) {
+                        $service = $serviceManager->getService($svc);
+                    }
+                    if(is_null($service)) {
+                        $response->status = \HttpStatus::ServiceUnavailable;
+                        $response->write();
+                        return;    
+                    }
+                    else {
+                        unset( $request[USER_KEY] );
+                        unset( $request[PWD_KEY] );
+                        unset( $request[SVC_KEY] );
+                        $service->serv($request, $response);
+                    }
                 }
                 else {
-                    $response->status = HttpStatus::NotFound;
-                    parent::writeJSON($response);
+                    $response->status = \HttpStatus::Unauthorized;
+                    $response->write();
                     return;
                 }
             }
         }
         else {
-            $response->status = HttpStatus::NotFound;
-            parent::writeJSON($response);
+            $response->status = \HttpStatus::InternalServerError;
+            $response->write();
             return;
         }
     }

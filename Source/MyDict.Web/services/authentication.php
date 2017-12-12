@@ -1,17 +1,18 @@
 <?php
-    namespace System;
+    namespace Authentication;
 
-    use System\Authenticator;
+    require_once('configure.php');
+    require_once('database.php');
 
-    require_once('./configure.php');
+    use Database\Connection;
 
     class Authenticator {
-        private function __constructor() {;}
-        private function __clone() {;}
-        private function __destructor(){;}
-
-        private function Authenticator() {
-
+        private function __construct() {
+            
+        }
+        
+        private function __clone() {
+            
         }
 
         public static function getInstance() {
@@ -23,25 +24,31 @@
             return $instance;
         }
 
-        public function authenticate($user,$pwd) {
-            $mysqli = new \mysqli(\DBHost, \DBUser, \DBPwd, \DBName);
-            if($mysqli) {
-                $q = "SELECT * FROM ".\DataTables::UserTable." WHERE name='".$user."' AND password='". hash("sha256",$pwd)."'";
-                
-                $result = $mysqli->query($q);
-                if($result) {
-                    $arr = $result->fetch_assoc();
-                    if($arr) {
-                        $out_user = $arr['name'];
-                        if(strcmp($out_user, $user) == 0) {
-                            $result->free();
-                            return true;
-                        }
-                    }
-                    $result->free();
-                    return false;
-                }
+        public function validate($user,$pwd) {
+            require_once('database.php');
+            $conn = Connection::getInstance();
+            if(is_null($conn)) {
+                return false;
             }
+            
+            $cmd = "SELECT name FROM ".\Tables::User." WHERE name='".$user."' AND password='".hash("sha256", $pwd)."'";
+            $query = $conn->createQuery($cmd);
+            if(is_null($query))  {
+                return false;
+            }
+    
+            $result = $query->execute();
+            if($result->getRowCount() <= 0) {
+                $result->free();
+                return false;
+            }
+
+            $name = $result->get("name");
+            
+            if(strcmp($name, $user) == 0) {
+                return true;
+            }
+
             return false;
         }
     }
