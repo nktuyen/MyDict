@@ -40,6 +40,11 @@ namespace MyDict.Admin
         {
             lvLanguages.Columns.Clear();
             lvLanguages.Items.Clear();
+
+            lvLanguages.Columns.Add("id", 50);
+            lvLanguages.Columns.Add("name", 250);
+            lvLanguages.Columns.Add("title", 300);
+
             _ds.Reset();
 
             LanguageService languageService = LanguageService.Instance;
@@ -54,11 +59,17 @@ namespace MyDict.Admin
         {
             try
             {
-                List<Language> languages = (List<Language>)response.Data;
-                foreach(Language lang in languages)
+                ListViewItem item = null;
+                foreach (Language lang in response.Data)
                 {
-                    MessageBox.Show(lang.Name);
+                    item = lvLanguages.Items.Add(lang.ID.ToString());
+                    if(null != item)
+                    {
+                        item.SubItems.Add(lang.Name);
+                        item.SubItems.Add(lang.Title);
+                    }
                 }
+                lblStatus.Text = string.Format("Total: {0} language(s)", lvLanguages.Items.Count);
             }
             catch(Exception ex)
             {
@@ -91,12 +102,36 @@ namespace MyDict.Admin
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            frmLanguage f = new frmLanguage();
+            f.Mode = frmLanguage.EditMode.EDIT;
 
+            ListViewItem item = lvLanguages.SelectedItems[0];
+            f.Entity = new Language() { ID = uint.Parse(item.Text), Name = item.SubItems[1].Text, Title = item.SubItems[2].Text };
+
+            f.ShowDialog();
+            if (f.Changed)
+            {
+                InitList(); //Refresh list
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lvLanguages_DoubleClick(object sender, EventArgs e)
+        {
+            if (lvLanguages.SelectedItems.Count > 0)
+            {
+                btnEdit_Click(sender, e);
+            }
+        }
+
+        private void lvLanguages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnEdit.Enabled = (lvLanguages.SelectedItems.Count > 0);
+            btnDelete.Enabled = (lvLanguages.SelectedItems.Count > 0);
         }
     }
 }

@@ -8,8 +8,10 @@ class Language {
     public $name = '';
     public $title = '';
 
-    public function __construct() {
-
+    public function __construct($id, $name, $title) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->title = $title;
     }
 }
 ?>

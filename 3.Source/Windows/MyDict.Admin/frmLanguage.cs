@@ -19,13 +19,8 @@ namespace MyDict.Admin
         public enum EditMode { NEW,EDIT}
         public Language Entity { get; set; }
         public EditMode  Mode { get; set; }
-        public bool Changed
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public bool Changed { get; private set; }
+
         public frmLanguage()
         {
             InitializeComponent();
@@ -43,10 +38,10 @@ namespace MyDict.Admin
             {
                 txtID.Text = Entity.ID.ToString();
             }
-            
+
             txtName.Text = Entity.Name;
             txtTitle.Text = Entity.Title;
-
+            Changed = false;
             txtID.ReadOnly = true;
             txtName.ReadOnly = false;
             txtTitle.ReadOnly = false;
@@ -66,7 +61,7 @@ namespace MyDict.Admin
             txtName.ReadOnly = true;
             txtTitle.ReadOnly = true;
 
-            if (Mode== EditMode.NEW)
+            if (Mode == EditMode.NEW)
             {
                 languageService.Put();
             }
@@ -95,7 +90,7 @@ namespace MyDict.Admin
                     break;
                 case HttpStatusCode.OK:
                     MessageBox.Show("OK", "HttpStatusCode", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break;
+                    return true;
                 default:
                     return true;
             }
@@ -131,6 +126,7 @@ namespace MyDict.Admin
                 this.Entity.Name = txtName.Text;
                 this.Entity.Title = txtTitle.Text;
                 this.Mode = EditMode.EDIT;
+                this.Changed = true;
                 btnSave.Enabled = false;
             }
         }

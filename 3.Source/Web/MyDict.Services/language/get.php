@@ -2,7 +2,9 @@
 namespace MyDict\Services;
 
 require_once(INC.'db'.DS.'helper.php');
-require_once('language.php');
+require_once(ROOT.'language'.DS.'language.php');
+
+
 
 use MyDict\Services\Http\Response;
 use MyDict\Services\Http\HttpStatusCode;
@@ -40,7 +42,13 @@ $query = $conn->createQuery("SELECT ".$get_fields." FROM tbl_language WHERE ".$w
 $result = $query->execute();
 
 if($result->getArray()) {
-    $_RESPONSE->data = $result->getArray();
+    $result->moveFirst();
+    do
+    {
+        $lang = new Entity\Language($result->getField('id'), $result->getField('name'), $result->getField('title'));
+        array_push($_RESPONSE->data, $lang);
+    }
+    while($result->moveNext());
     $_RESPONSE->OK();
 }
 

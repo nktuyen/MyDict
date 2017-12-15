@@ -10,7 +10,7 @@ class Result {
         $this->result = $res;
         if( $this->result) {
             if("object" === gettype($this->result)){
-                $this->arr = $this->result->fetch_all();
+                $this->arr = $this->result->fetch_all(MYSQLI_ASSOC);
             }
         }
     }
@@ -40,6 +40,39 @@ class Result {
     public function free() {
         if($this->result) {
             $this->result->free();
+        }
+    }
+
+    public function moveFirst() {
+        if(is_array($this->arr)) {
+            return reset($this->arr);
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function moveNext() {
+        if(is_array($this->arr)) {
+            return next($this->arr);
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getField($field) {
+        if(is_array($this->arr)) {
+            $record = current($this->arr);
+            if(array_key_exists($field, $record)) {
+                return $record[$field];
+            }
+            else {
+                return null;
+            }
+        }
+        else {
+            return null;
         }
     }
 }

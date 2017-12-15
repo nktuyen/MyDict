@@ -21,7 +21,7 @@ class Query {
         if(strlen($cmd) == 0) {
             $cmd = $this->query;
         }
-       
+   
         return new Result($this->conn->query($cmd));
     }
 }

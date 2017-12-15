@@ -91,6 +91,8 @@
             this.lvLanguages.TabIndex = 0;
             this.lvLanguages.UseCompatibleStateImageBehavior = false;
             this.lvLanguages.View = System.Windows.Forms.View.Details;
+            this.lvLanguages.SelectedIndexChanged += new System.EventHandler(this.lvLanguages_SelectedIndexChanged);
+            this.lvLanguages.DoubleClick += new System.EventHandler(this.lvLanguages_DoubleClick);
             // 
             // btnDelete
             // 

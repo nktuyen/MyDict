@@ -62,32 +62,21 @@ abstract class HttpStatusCode
      }
 
      public function write() {
-         header('Content-Type: application/xml');
+         header('Content-Type: application/json');
          echo json_encode($this);
      }
 
      public function OK() {
          $this->status = HttpStatusCode::OK;
-         header('Content-Type: application/xml');
-         echo(json_encode($this));
-     }
-
-     private function generateXML() {
-        $xml = '<?xml version="1.0" encoding="utf-8"?>';
-        $xml += '<response xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">';
-        $xml += '<status>'.$this->status.'</status>';
-        $xml +=     '<data>';
-        $xml +=     '</data>';
-        $xml += '</response>';
-
-        return $xml;
+         header('Content-Type: application/json');
+         die(json_encode($this));
      }
 
      public function error($code) {
          $this->status = $code;
          unset($this->data);
-         header('Content-Type: application/xml');
-         die();
+         header('Content-Type: application/json');
+         die(json_encode($this));
      }
  }
 

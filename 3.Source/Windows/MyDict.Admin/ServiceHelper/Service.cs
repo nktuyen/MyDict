@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net;
 using System.Diagnostics;
+using System.Web.Script.Serialization;
 using MyDict.Admin.Entity;
 
 namespace MyDict.Admin.ServiceHelper
@@ -13,7 +11,7 @@ namespace MyDict.Admin.ServiceHelper
     public class Response
     {
         public int Status { get; set; }
-        public List<Language> Data { get; set; }
+        public List<Language>  Data { get; set; }
 
         public Response()
         {
@@ -63,9 +61,11 @@ namespace MyDict.Admin.ServiceHelper
 
             if (_responseString != null)
             {
+
                 try
                 {
                     var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Response>(_responseString);
+
                     if (null != response)
                     {
                         Response.Status = response.Status;
