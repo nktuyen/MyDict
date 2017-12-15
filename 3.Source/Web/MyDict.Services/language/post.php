@@ -1,4 +1,6 @@
 <?php
-echo "POST ========:</br>";
-var_dump($_POST);
+namespace MyDict\Services;
+
+defined("__MAGIC__") or die();
+
 ?>

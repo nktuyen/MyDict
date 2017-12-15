@@ -44,7 +44,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(50, 20);
             this.lblID.TabIndex = 0;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = "id";
             this.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtID
@@ -60,7 +60,7 @@
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(50, 20);
             this.lblName.TabIndex = 0;
-            this.lblName.Text = "Name:";
+            this.lblName.Text = "name";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtName
@@ -77,7 +77,7 @@
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(50, 20);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Title:";
+            this.lblTitle.Text = "title";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTitle

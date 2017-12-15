@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MyDict.Admin.Database;
 using System.Net;
+using MyDict.Admin.ServiceHelper;
+using MyDict.Admin.Entity;
+using System.Diagnostics;
 
 namespace MyDict.Admin
 {
@@ -38,6 +41,30 @@ namespace MyDict.Admin
             lvLanguages.Columns.Clear();
             lvLanguages.Items.Clear();
             _ds.Reset();
+
+            LanguageService languageService = LanguageService.Instance;
+            languageService.RequestCompletedEvent -= new Service.RequestCompleted(onRequestCompleted);
+            languageService.ResetRequestData();
+            languageService.AddRequestData("fields","*");
+            languageService.RequestCompletedEvent += new Service.RequestCompleted(onRequestCompleted);
+            languageService.Get();
+        }
+
+        void onRequestCompleted(Response response)
+        {
+            try
+            {
+                List<Language> languages = (List<Language>)response.Data;
+                foreach(Language lang in languages)
+                {
+                    MessageBox.Show(lang.Name);
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+
         }
 
         private void frmLanguages_Load(object sender, EventArgs e)

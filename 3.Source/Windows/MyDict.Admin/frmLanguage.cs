@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MyDict.Admin.Database;
 using MyDict.Admin.Entity;
 using MyDict.Admin.ServiceHelper;
+using System.Net;
 
 namespace MyDict.Admin
 {
@@ -56,6 +57,7 @@ namespace MyDict.Admin
         private bool SaveEntity()
         {
             LanguageService languageService = LanguageService.Instance;
+            languageService.ResetRequestData();
             languageService.AddRequestData(lblID.Text, txtID.Text);
             languageService.AddRequestData(lblName.Text, txtName.Text);
             languageService.AddRequestData(lblTitle.Text, txtTitle.Text);
@@ -76,7 +78,29 @@ namespace MyDict.Admin
             //Un-lock edit controls
             txtName.ReadOnly = false;
             txtTitle.ReadOnly = false;
-            return true;
+
+            switch ((HttpStatusCode)languageService.Response.Status)
+            {
+                case HttpStatusCode.MethodNotAllowed:
+                    MessageBox.Show("MethodNotAllowed", "HttpStatusCode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case HttpStatusCode.InternalServerError:
+                    MessageBox.Show("InternalServerError", "HttpStatusCode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case HttpStatusCode.Unauthorized:
+                    MessageBox.Show("Unauthorized", "HttpStatusCode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case HttpStatusCode.BadRequest:
+                    MessageBox.Show("BadRequest", "HttpStatusCode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case HttpStatusCode.OK:
+                    MessageBox.Show("OK", "HttpStatusCode", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+                default:
+                    return true;
+            }
+
+            return false;
         }
 
         private void frmLanguage_FormClosed(object sender, FormClosedEventArgs e)
@@ -103,6 +127,9 @@ namespace MyDict.Admin
         {
             if (SaveEntity())
             {
+
+                this.Entity.Name = txtName.Text;
+                this.Entity.Title = txtTitle.Text;
                 this.Mode = EditMode.EDIT;
                 btnSave.Enabled = false;
             }

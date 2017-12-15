@@ -18,6 +18,7 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="inc\db\" />
     <Folder Include="language\" />
     <Folder Include="country\" />
     <Folder Include="class\" />
@@ -29,6 +30,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="configure.php" />
+    <Compile Include="inc\db\connection.php" />
+    <Compile Include="inc\db\helper.php" />
+    <Compile Include="inc\db\query.php" />
+    <Compile Include="inc\db\result.php" />
+    <Compile Include="inc\response.php" />
     <Compile Include="language\delete.php" />
     <Compile Include="language\get.php" />
     <Compile Include="language\index.php" />

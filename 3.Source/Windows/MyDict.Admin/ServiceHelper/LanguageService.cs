@@ -23,7 +23,7 @@ namespace MyDict.Admin.ServiceHelper
         }
         private LanguageService() : base("language")
         {
-            URL = "/language/index.php";
+            URI = "/language/index.php";
         }
     }
 }

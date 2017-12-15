@@ -1,4 +1,8 @@
 <?php
-echo "DELETE ========:</br>";
-var_dump($_POST);
+namespace MyDict\Services;
+
+defined("__MAGIC__") or die();
+
+global $_DELETE;
+
 ?>
