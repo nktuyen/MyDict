@@ -1,0 +1,30 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>MyDict.Services</Name>
+    <ProjectGuid>309a3ab4-67b6-4b87-9120-0d4e97e48e06</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+    <AssemblyName>MyDict.Services</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <IncludeDebugInformation>false</IncludeDebugInformation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="language\" />
+    <Folder Include="country\" />
+    <Folder Include="class\" />
+    <Folder Include="category\" />
+    <Folder Include="dictionary\" />
+    <Folder Include="vocabulary\" />
+    <Folder Include="user\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="language\index.php" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "MyDict.Services", "MyDict.Services\MyDict.Services.phpproj", "{309A3AB4-67B6-4B87-9120-0D4E97E48E06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{309A3AB4-67B6-4B87-9120-0D4E97E48E06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{309A3AB4-67B6-4B87-9120-0D4E97E48E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77F6D4A1-B140-4AF0-A09D-B13AE275C7EE}
+	EndGlobalSection
+EndGlobal
