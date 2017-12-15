@@ -46,7 +46,7 @@
             this.cbCriteria.Location = new System.Drawing.Point(12, 25);
             this.cbCriteria.Name = "cbCriteria";
             this.cbCriteria.Size = new System.Drawing.Size(200, 21);
-            this.cbCriteria.TabIndex = 0;
+            this.cbCriteria.TabIndex = 1;
             // 
             // lblCriteria
             // 
@@ -88,7 +88,7 @@
             this.lvLanguages.Location = new System.Drawing.Point(12, 52);
             this.lvLanguages.Name = "lvLanguages";
             this.lvLanguages.Size = new System.Drawing.Size(760, 369);
-            this.lvLanguages.TabIndex = 4;
+            this.lvLanguages.TabIndex = 0;
             this.lvLanguages.UseCompatibleStateImageBehavior = false;
             this.lvLanguages.View = System.Windows.Forms.View.Details;
             // 
@@ -99,9 +99,10 @@
             this.btnDelete.Location = new System.Drawing.Point(692, 427);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(80, 23);
-            this.btnDelete.TabIndex = 5;
+            this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
@@ -113,6 +114,7 @@
             this.btnEdit.TabIndex = 5;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAddNew
             // 
@@ -120,9 +122,10 @@
             this.btnAddNew.Location = new System.Drawing.Point(520, 427);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(80, 23);
-            this.btnAddNew.TabIndex = 5;
+            this.btnAddNew.TabIndex = 4;
             this.btnAddNew.Text = "Add New";
             this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // lblStatus
             // 
@@ -149,7 +152,11 @@
             this.Controls.Add(this.cbCriteria);
             this.MinimumSize = new System.Drawing.Size(600, 200);
             this.Name = "frmLanguages";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Languages";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLanguages_FormClosed);
+            this.Load += new System.EventHandler(this.frmLanguages_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

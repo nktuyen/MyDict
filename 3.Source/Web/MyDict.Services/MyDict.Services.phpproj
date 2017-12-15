@@ -8,6 +8,8 @@
     </RootNamespace>
     <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
     <AssemblyName>MyDict.Services</AssemblyName>
+    <SpecificPageValue>language/index.php</SpecificPageValue>
+    <StartAction>SpecificPage</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -21,10 +23,20 @@
     <Folder Include="class\" />
     <Folder Include="category\" />
     <Folder Include="dictionary\" />
+    <Folder Include="inc\" />
     <Folder Include="vocabulary\" />
     <Folder Include="user\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="configure.php" />
+    <Compile Include="language\delete.php" />
+    <Compile Include="language\get.php" />
     <Compile Include="language\index.php" />
+    <Compile Include="language\language.php" />
+    <Compile Include="language\post.php" />
+    <Compile Include="language\put.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="index.html" />
   </ItemGroup>
 </Project>
