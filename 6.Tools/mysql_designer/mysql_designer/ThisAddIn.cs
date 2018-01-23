@@ -34,7 +34,7 @@ namespace mysql_designer
 
         protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
-          return new MySQLRibbon();
+            return new MySQLRibbon();
         }
 
         #endregion

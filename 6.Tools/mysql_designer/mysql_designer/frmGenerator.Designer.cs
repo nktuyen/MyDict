@@ -29,59 +29,63 @@
         private void InitializeComponent()
         {
             this.grbApplyTo = new System.Windows.Forms.GroupBox();
+            this.cbSheets = new System.Windows.Forms.ComboBox();
             this.radSpecifiedSheet = new System.Windows.Forms.RadioButton();
             this.radCurrentSheet = new System.Windows.Forms.RadioButton();
             this.radAllSheets = new System.Windows.Forms.RadioButton();
             this.grbSettings = new System.Windows.Forms.GroupBox();
-            this.btnGenerate = new System.Windows.Forms.Button();
-            this.cbSheets = new System.Windows.Forms.ComboBox();
-            this.grbTableName = new System.Windows.Forms.GroupBox();
-            this.radTableNameFromSheetName = new System.Windows.Forms.RadioButton();
-            this.radTableNameFromCell = new System.Windows.Forms.RadioButton();
-            this.txtTableNameCellRow = new System.Windows.Forms.TextBox();
-            this.txtTableNameCellColumn = new System.Windows.Forms.TextBox();
-            this.lblTableNameCellRow = new System.Windows.Forms.Label();
-            this.lblTableNameCellColumn = new System.Windows.Forms.Label();
             this.grbTableComment = new System.Windows.Forms.GroupBox();
+            this.txtTableComment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTableCommentColumn = new System.Windows.Forms.TextBox();
             this.txtTableCommentRow = new System.Windows.Forms.TextBox();
             this.radTableCommentFromCellText = new System.Windows.Forms.RadioButton();
             this.radTableCommentFromText = new System.Windows.Forms.RadioButton();
-            this.txtTableComment = new System.Windows.Forms.TextBox();
+            this.grbTableName = new System.Windows.Forms.GroupBox();
+            this.lblTableNameCellColumn = new System.Windows.Forms.Label();
+            this.lblTableNameCellRow = new System.Windows.Forms.Label();
+            this.txtTableNameCellColumn = new System.Windows.Forms.TextBox();
+            this.txtTableNameCellRow = new System.Windows.Forms.TextBox();
+            this.radTableNameFromCell = new System.Windows.Forms.RadioButton();
+            this.radTableNameFromSheetName = new System.Windows.Forms.RadioButton();
+            this.btnGenerate = new System.Windows.Forms.Button();
             this.grbFieldData = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtStartRow = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtFieldNameColumn = new System.Windows.Forms.TextBox();
-            this.txtFieldTypeColumn = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.chbFieldSize = new System.Windows.Forms.CheckBox();
-            this.txtFieldSizeColumn = new System.Windows.Forms.TextBox();
-            this.txtFieldAttributeColumn = new System.Windows.Forms.TextBox();
-            this.chbFieldAttribute = new System.Windows.Forms.CheckBox();
-            this.txtFieldNullableColumn = new System.Windows.Forms.TextBox();
-            this.chbFieldNullable = new System.Windows.Forms.CheckBox();
-            this.txtFieldPrimaryColumn = new System.Windows.Forms.TextBox();
-            this.txtFieldUniqueColumn = new System.Windows.Forms.TextBox();
             this.chbFieldUnique = new System.Windows.Forms.CheckBox();
-            this.txtFieldAutoIncreColumn = new System.Windows.Forms.TextBox();
-            this.txtFieldDefValueColumn = new System.Windows.Forms.TextBox();
-            this.txtFieldRemarkColumn = new System.Windows.Forms.TextBox();
-            this.chbFieldAutoIncre = new System.Windows.Forms.CheckBox();
-            this.chbFieldDefaultValue = new System.Windows.Forms.CheckBox();
-            this.chbFieldRemark = new System.Windows.Forms.CheckBox();
             this.chbFieldPrimary = new System.Windows.Forms.CheckBox();
+            this.chbFieldNullable = new System.Windows.Forms.CheckBox();
+            this.chbFieldAttribute = new System.Windows.Forms.CheckBox();
+            this.chbFieldRemark = new System.Windows.Forms.CheckBox();
+            this.chbFieldDefaultValue = new System.Windows.Forms.CheckBox();
+            this.chbFieldAutoIncre = new System.Windows.Forms.CheckBox();
+            this.chbFieldSize = new System.Windows.Forms.CheckBox();
+            this.txtFieldUniqueColumn = new System.Windows.Forms.TextBox();
+            this.txtFieldPrimaryColumn = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtFieldNullableColumn = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtFieldAttributeColumn = new System.Windows.Forms.TextBox();
+            this.txtFieldSizeColumn = new System.Windows.Forms.TextBox();
+            this.txtFieldRemarkColumn = new System.Windows.Forms.TextBox();
+            this.txtFieldDefValueColumn = new System.Windows.Forms.TextBox();
+            this.txtFieldAutoIncreColumn = new System.Windows.Forms.TextBox();
+            this.txtFieldTypeColumn = new System.Windows.Forms.TextBox();
+            this.txtFieldNameColumn = new System.Windows.Forms.TextBox();
+            this.txtStartRow = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lstExcludeSheets = new System.Windows.Forms.ListBox();
             this.grbApplyTo.SuspendLayout();
             this.grbSettings.SuspendLayout();
-            this.grbTableName.SuspendLayout();
             this.grbTableComment.SuspendLayout();
+            this.grbTableName.SuspendLayout();
             this.grbFieldData.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbApplyTo
             // 
+            this.grbApplyTo.Controls.Add(this.lstExcludeSheets);
+            this.grbApplyTo.Controls.Add(this.label6);
             this.grbApplyTo.Controls.Add(this.cbSheets);
             this.grbApplyTo.Controls.Add(this.radSpecifiedSheet);
             this.grbApplyTo.Controls.Add(this.radCurrentSheet);
@@ -89,16 +93,26 @@
             this.grbApplyTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbApplyTo.Location = new System.Drawing.Point(12, 12);
             this.grbApplyTo.Name = "grbApplyTo";
-            this.grbApplyTo.Size = new System.Drawing.Size(707, 43);
+            this.grbApplyTo.Size = new System.Drawing.Size(707, 59);
             this.grbApplyTo.TabIndex = 0;
             this.grbApplyTo.TabStop = false;
             this.grbApplyTo.Text = "Apply To";
+            // 
+            // cbSheets
+            // 
+            this.cbSheets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSheets.FormattingEnabled = true;
+            this.cbSheets.Location = new System.Drawing.Point(241, 18);
+            this.cbSheets.Name = "cbSheets";
+            this.cbSheets.Size = new System.Drawing.Size(161, 21);
+            this.cbSheets.Sorted = true;
+            this.cbSheets.TabIndex = 1;
             // 
             // radSpecifiedSheet
             // 
             this.radSpecifiedSheet.AutoSize = true;
             this.radSpecifiedSheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radSpecifiedSheet.Location = new System.Drawing.Point(227, 20);
+            this.radSpecifiedSheet.Location = new System.Drawing.Point(141, 20);
             this.radSpecifiedSheet.Name = "radSpecifiedSheet";
             this.radSpecifiedSheet.Size = new System.Drawing.Size(98, 17);
             this.radSpecifiedSheet.TabIndex = 0;
@@ -110,7 +124,7 @@
             // 
             this.radCurrentSheet.AutoSize = true;
             this.radCurrentSheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCurrentSheet.Location = new System.Drawing.Point(118, 20);
+            this.radCurrentSheet.Location = new System.Drawing.Point(32, 20);
             this.radCurrentSheet.Name = "radCurrentSheet";
             this.radCurrentSheet.Size = new System.Drawing.Size(88, 17);
             this.radCurrentSheet.TabIndex = 0;
@@ -123,7 +137,7 @@
             this.radAllSheets.AutoSize = true;
             this.radAllSheets.Checked = true;
             this.radAllSheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radAllSheets.Location = new System.Drawing.Point(29, 20);
+            this.radAllSheets.Location = new System.Drawing.Point(430, 18);
             this.radAllSheets.Name = "radAllSheets";
             this.radAllSheets.Size = new System.Drawing.Size(70, 17);
             this.radAllSheets.TabIndex = 0;
@@ -144,105 +158,6 @@
             this.grbSettings.TabStop = false;
             this.grbSettings.Text = "Table Settings";
             // 
-            // btnGenerate
-            // 
-            this.btnGenerate.Location = new System.Drawing.Point(334, 415);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(75, 25);
-            this.btnGenerate.TabIndex = 2;
-            this.btnGenerate.Text = "Generate";
-            this.btnGenerate.UseVisualStyleBackColor = true;
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
-            // 
-            // cbSheets
-            // 
-            this.cbSheets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSheets.FormattingEnabled = true;
-            this.cbSheets.Location = new System.Drawing.Point(340, 18);
-            this.cbSheets.Name = "cbSheets";
-            this.cbSheets.Size = new System.Drawing.Size(209, 21);
-            this.cbSheets.TabIndex = 1;
-            // 
-            // grbTableName
-            // 
-            this.grbTableName.Controls.Add(this.lblTableNameCellColumn);
-            this.grbTableName.Controls.Add(this.lblTableNameCellRow);
-            this.grbTableName.Controls.Add(this.txtTableNameCellColumn);
-            this.grbTableName.Controls.Add(this.txtTableNameCellRow);
-            this.grbTableName.Controls.Add(this.radTableNameFromCell);
-            this.grbTableName.Controls.Add(this.radTableNameFromSheetName);
-            this.grbTableName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbTableName.Location = new System.Drawing.Point(29, 29);
-            this.grbTableName.Name = "grbTableName";
-            this.grbTableName.Size = new System.Drawing.Size(662, 55);
-            this.grbTableName.TabIndex = 0;
-            this.grbTableName.TabStop = false;
-            this.grbTableName.Text = "Table Name";
-            // 
-            // radTableNameFromSheetName
-            // 
-            this.radTableNameFromSheetName.AutoSize = true;
-            this.radTableNameFromSheetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTableNameFromSheetName.Location = new System.Drawing.Point(38, 31);
-            this.radTableNameFromSheetName.Name = "radTableNameFromSheetName";
-            this.radTableNameFromSheetName.Size = new System.Drawing.Size(115, 17);
-            this.radTableNameFromSheetName.TabIndex = 0;
-            this.radTableNameFromSheetName.Text = "From Sheet\'s name";
-            this.radTableNameFromSheetName.UseVisualStyleBackColor = true;
-            this.radTableNameFromSheetName.CheckedChanged += new System.EventHandler(this.radTableNameFromSheetName_CheckedChanged);
-            // 
-            // radTableNameFromCell
-            // 
-            this.radTableNameFromCell.AutoSize = true;
-            this.radTableNameFromCell.Checked = true;
-            this.radTableNameFromCell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTableNameFromCell.Location = new System.Drawing.Point(221, 31);
-            this.radTableNameFromCell.Name = "radTableNameFromCell";
-            this.radTableNameFromCell.Size = new System.Drawing.Size(112, 17);
-            this.radTableNameFromCell.TabIndex = 0;
-            this.radTableNameFromCell.TabStop = true;
-            this.radTableNameFromCell.Text = "From specified cell";
-            this.radTableNameFromCell.UseVisualStyleBackColor = true;
-            this.radTableNameFromCell.CheckedChanged += new System.EventHandler(this.radTableNameFromCell_CheckedChanged);
-            // 
-            // txtTableNameCellRow
-            // 
-            this.txtTableNameCellRow.Enabled = false;
-            this.txtTableNameCellRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTableNameCellRow.Location = new System.Drawing.Point(400, 29);
-            this.txtTableNameCellRow.Name = "txtTableNameCellRow";
-            this.txtTableNameCellRow.Size = new System.Drawing.Size(30, 20);
-            this.txtTableNameCellRow.TabIndex = 1;
-            this.txtTableNameCellRow.Text = "2";
-            // 
-            // txtTableNameCellColumn
-            // 
-            this.txtTableNameCellColumn.Enabled = false;
-            this.txtTableNameCellColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTableNameCellColumn.Location = new System.Drawing.Point(369, 29);
-            this.txtTableNameCellColumn.Name = "txtTableNameCellColumn";
-            this.txtTableNameCellColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtTableNameCellColumn.TabIndex = 2;
-            this.txtTableNameCellColumn.Text = "C";
-            // 
-            // lblTableNameCellRow
-            // 
-            this.lblTableNameCellRow.AutoSize = true;
-            this.lblTableNameCellRow.Location = new System.Drawing.Point(401, 12);
-            this.lblTableNameCellRow.Name = "lblTableNameCellRow";
-            this.lblTableNameCellRow.Size = new System.Drawing.Size(29, 13);
-            this.lblTableNameCellRow.TabIndex = 2;
-            this.lblTableNameCellRow.Text = "Row";
-            // 
-            // lblTableNameCellColumn
-            // 
-            this.lblTableNameCellColumn.AutoSize = true;
-            this.lblTableNameCellColumn.Location = new System.Drawing.Point(373, 12);
-            this.lblTableNameCellColumn.Name = "lblTableNameCellColumn";
-            this.lblTableNameCellColumn.Size = new System.Drawing.Size(22, 13);
-            this.lblTableNameCellColumn.TabIndex = 3;
-            this.lblTableNameCellColumn.Text = "Col";
-            // 
             // grbTableComment
             // 
             this.grbTableComment.Controls.Add(this.txtTableComment);
@@ -259,6 +174,13 @@
             this.grbTableComment.TabIndex = 1;
             this.grbTableComment.TabStop = false;
             this.grbTableComment.Text = "Table Comment";
+            // 
+            // txtTableComment
+            // 
+            this.txtTableComment.Location = new System.Drawing.Point(86, 30);
+            this.txtTableComment.Name = "txtTableComment";
+            this.txtTableComment.Size = new System.Drawing.Size(110, 20);
+            this.txtTableComment.TabIndex = 4;
             // 
             // label1
             // 
@@ -322,12 +244,95 @@
             this.radTableCommentFromText.Text = "Text";
             this.radTableCommentFromText.UseVisualStyleBackColor = true;
             // 
-            // txtTableComment
+            // grbTableName
             // 
-            this.txtTableComment.Location = new System.Drawing.Point(86, 30);
-            this.txtTableComment.Name = "txtTableComment";
-            this.txtTableComment.Size = new System.Drawing.Size(110, 20);
-            this.txtTableComment.TabIndex = 4;
+            this.grbTableName.Controls.Add(this.lblTableNameCellColumn);
+            this.grbTableName.Controls.Add(this.lblTableNameCellRow);
+            this.grbTableName.Controls.Add(this.txtTableNameCellColumn);
+            this.grbTableName.Controls.Add(this.txtTableNameCellRow);
+            this.grbTableName.Controls.Add(this.radTableNameFromCell);
+            this.grbTableName.Controls.Add(this.radTableNameFromSheetName);
+            this.grbTableName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbTableName.Location = new System.Drawing.Point(29, 29);
+            this.grbTableName.Name = "grbTableName";
+            this.grbTableName.Size = new System.Drawing.Size(662, 55);
+            this.grbTableName.TabIndex = 0;
+            this.grbTableName.TabStop = false;
+            this.grbTableName.Text = "Table Name";
+            // 
+            // lblTableNameCellColumn
+            // 
+            this.lblTableNameCellColumn.AutoSize = true;
+            this.lblTableNameCellColumn.Location = new System.Drawing.Point(373, 12);
+            this.lblTableNameCellColumn.Name = "lblTableNameCellColumn";
+            this.lblTableNameCellColumn.Size = new System.Drawing.Size(22, 13);
+            this.lblTableNameCellColumn.TabIndex = 3;
+            this.lblTableNameCellColumn.Text = "Col";
+            // 
+            // lblTableNameCellRow
+            // 
+            this.lblTableNameCellRow.AutoSize = true;
+            this.lblTableNameCellRow.Location = new System.Drawing.Point(401, 12);
+            this.lblTableNameCellRow.Name = "lblTableNameCellRow";
+            this.lblTableNameCellRow.Size = new System.Drawing.Size(29, 13);
+            this.lblTableNameCellRow.TabIndex = 2;
+            this.lblTableNameCellRow.Text = "Row";
+            // 
+            // txtTableNameCellColumn
+            // 
+            this.txtTableNameCellColumn.Enabled = false;
+            this.txtTableNameCellColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTableNameCellColumn.Location = new System.Drawing.Point(369, 29);
+            this.txtTableNameCellColumn.Name = "txtTableNameCellColumn";
+            this.txtTableNameCellColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtTableNameCellColumn.TabIndex = 2;
+            this.txtTableNameCellColumn.Text = "C";
+            // 
+            // txtTableNameCellRow
+            // 
+            this.txtTableNameCellRow.Enabled = false;
+            this.txtTableNameCellRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTableNameCellRow.Location = new System.Drawing.Point(400, 29);
+            this.txtTableNameCellRow.Name = "txtTableNameCellRow";
+            this.txtTableNameCellRow.Size = new System.Drawing.Size(30, 20);
+            this.txtTableNameCellRow.TabIndex = 1;
+            this.txtTableNameCellRow.Text = "2";
+            // 
+            // radTableNameFromCell
+            // 
+            this.radTableNameFromCell.AutoSize = true;
+            this.radTableNameFromCell.Checked = true;
+            this.radTableNameFromCell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTableNameFromCell.Location = new System.Drawing.Point(221, 31);
+            this.radTableNameFromCell.Name = "radTableNameFromCell";
+            this.radTableNameFromCell.Size = new System.Drawing.Size(112, 17);
+            this.radTableNameFromCell.TabIndex = 0;
+            this.radTableNameFromCell.TabStop = true;
+            this.radTableNameFromCell.Text = "From specified cell";
+            this.radTableNameFromCell.UseVisualStyleBackColor = true;
+            this.radTableNameFromCell.CheckedChanged += new System.EventHandler(this.radTableNameFromCell_CheckedChanged);
+            // 
+            // radTableNameFromSheetName
+            // 
+            this.radTableNameFromSheetName.AutoSize = true;
+            this.radTableNameFromSheetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTableNameFromSheetName.Location = new System.Drawing.Point(38, 31);
+            this.radTableNameFromSheetName.Name = "radTableNameFromSheetName";
+            this.radTableNameFromSheetName.Size = new System.Drawing.Size(115, 17);
+            this.radTableNameFromSheetName.TabIndex = 0;
+            this.radTableNameFromSheetName.Text = "From Sheet\'s name";
+            this.radTableNameFromSheetName.UseVisualStyleBackColor = true;
+            this.radTableNameFromSheetName.CheckedChanged += new System.EventHandler(this.radTableNameFromSheetName_CheckedChanged);
+            // 
+            // btnGenerate
+            // 
+            this.btnGenerate.Location = new System.Drawing.Point(334, 415);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(75, 25);
+            this.btnGenerate.TabIndex = 2;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // grbFieldData
             // 
@@ -361,120 +366,31 @@
             this.grbFieldData.TabStop = false;
             this.grbFieldData.Text = "Field Settings";
             // 
-            // label3
+            // chbFieldUnique
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(34, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Start row";
+            this.chbFieldUnique.AutoSize = true;
+            this.chbFieldUnique.Checked = true;
+            this.chbFieldUnique.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbFieldUnique.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbFieldUnique.Location = new System.Drawing.Point(594, 64);
+            this.chbFieldUnique.Name = "chbFieldUnique";
+            this.chbFieldUnique.Size = new System.Drawing.Size(97, 17);
+            this.chbFieldUnique.TabIndex = 6;
+            this.chbFieldUnique.Text = "Unique column";
+            this.chbFieldUnique.UseVisualStyleBackColor = true;
             // 
-            // txtStartRow
+            // chbFieldPrimary
             // 
-            this.txtStartRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStartRow.Location = new System.Drawing.Point(34, 35);
-            this.txtStartRow.Name = "txtStartRow";
-            this.txtStartRow.Size = new System.Drawing.Size(33, 20);
-            this.txtStartRow.TabIndex = 1;
-            this.txtStartRow.Text = "6";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(34, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Name column";
-            // 
-            // txtFieldNameColumn
-            // 
-            this.txtFieldNameColumn.Enabled = false;
-            this.txtFieldNameColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldNameColumn.Location = new System.Drawing.Point(34, 83);
-            this.txtFieldNameColumn.Name = "txtFieldNameColumn";
-            this.txtFieldNameColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldNameColumn.TabIndex = 4;
-            this.txtFieldNameColumn.Text = "B";
-            // 
-            // txtFieldTypeColumn
-            // 
-            this.txtFieldTypeColumn.Enabled = false;
-            this.txtFieldTypeColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldTypeColumn.Location = new System.Drawing.Point(112, 83);
-            this.txtFieldTypeColumn.Name = "txtFieldTypeColumn";
-            this.txtFieldTypeColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldTypeColumn.TabIndex = 4;
-            this.txtFieldTypeColumn.Text = "C";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(112, 64);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Type column";
-            // 
-            // chbFieldSize
-            // 
-            this.chbFieldSize.AutoSize = true;
-            this.chbFieldSize.Checked = true;
-            this.chbFieldSize.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbFieldSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbFieldSize.Location = new System.Drawing.Point(191, 64);
-            this.chbFieldSize.Name = "chbFieldSize";
-            this.chbFieldSize.Size = new System.Drawing.Size(83, 17);
-            this.chbFieldSize.TabIndex = 6;
-            this.chbFieldSize.Text = "Size column";
-            this.chbFieldSize.UseVisualStyleBackColor = true;
-            // 
-            // txtFieldSizeColumn
-            // 
-            this.txtFieldSizeColumn.Enabled = false;
-            this.txtFieldSizeColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldSizeColumn.Location = new System.Drawing.Point(191, 83);
-            this.txtFieldSizeColumn.Name = "txtFieldSizeColumn";
-            this.txtFieldSizeColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldSizeColumn.TabIndex = 4;
-            this.txtFieldSizeColumn.Text = "D";
-            // 
-            // txtFieldAttributeColumn
-            // 
-            this.txtFieldAttributeColumn.Enabled = false;
-            this.txtFieldAttributeColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldAttributeColumn.Location = new System.Drawing.Point(276, 83);
-            this.txtFieldAttributeColumn.Name = "txtFieldAttributeColumn";
-            this.txtFieldAttributeColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldAttributeColumn.TabIndex = 4;
-            this.txtFieldAttributeColumn.Text = "E";
-            // 
-            // chbFieldAttribute
-            // 
-            this.chbFieldAttribute.AutoSize = true;
-            this.chbFieldAttribute.Checked = true;
-            this.chbFieldAttribute.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbFieldAttribute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbFieldAttribute.Location = new System.Drawing.Point(276, 64);
-            this.chbFieldAttribute.Name = "chbFieldAttribute";
-            this.chbFieldAttribute.Size = new System.Drawing.Size(102, 17);
-            this.chbFieldAttribute.TabIndex = 6;
-            this.chbFieldAttribute.Text = "Attribute column";
-            this.chbFieldAttribute.UseVisualStyleBackColor = true;
-            // 
-            // txtFieldNullableColumn
-            // 
-            this.txtFieldNullableColumn.Enabled = false;
-            this.txtFieldNullableColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldNullableColumn.Location = new System.Drawing.Point(384, 83);
-            this.txtFieldNullableColumn.Name = "txtFieldNullableColumn";
-            this.txtFieldNullableColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldNullableColumn.TabIndex = 4;
-            this.txtFieldNullableColumn.Text = "F";
+            this.chbFieldPrimary.AutoSize = true;
+            this.chbFieldPrimary.Checked = true;
+            this.chbFieldPrimary.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbFieldPrimary.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbFieldPrimary.Location = new System.Drawing.Point(484, 64);
+            this.chbFieldPrimary.Name = "chbFieldPrimary";
+            this.chbFieldPrimary.Size = new System.Drawing.Size(97, 17);
+            this.chbFieldPrimary.TabIndex = 6;
+            this.chbFieldPrimary.Text = "Primary column";
+            this.chbFieldPrimary.UseVisualStyleBackColor = true;
             // 
             // chbFieldNullable
             // 
@@ -489,94 +405,18 @@
             this.chbFieldNullable.Text = "Nullable column";
             this.chbFieldNullable.UseVisualStyleBackColor = true;
             // 
-            // txtFieldPrimaryColumn
+            // chbFieldAttribute
             // 
-            this.txtFieldPrimaryColumn.Enabled = false;
-            this.txtFieldPrimaryColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldPrimaryColumn.Location = new System.Drawing.Point(484, 83);
-            this.txtFieldPrimaryColumn.Name = "txtFieldPrimaryColumn";
-            this.txtFieldPrimaryColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldPrimaryColumn.TabIndex = 4;
-            this.txtFieldPrimaryColumn.Text = "G";
-            // 
-            // txtFieldUniqueColumn
-            // 
-            this.txtFieldUniqueColumn.Enabled = false;
-            this.txtFieldUniqueColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldUniqueColumn.Location = new System.Drawing.Point(594, 83);
-            this.txtFieldUniqueColumn.Name = "txtFieldUniqueColumn";
-            this.txtFieldUniqueColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldUniqueColumn.TabIndex = 4;
-            this.txtFieldUniqueColumn.Text = "H";
-            // 
-            // chbFieldUnique
-            // 
-            this.chbFieldUnique.AutoSize = true;
-            this.chbFieldUnique.Checked = true;
-            this.chbFieldUnique.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbFieldUnique.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbFieldUnique.Location = new System.Drawing.Point(594, 64);
-            this.chbFieldUnique.Name = "chbFieldUnique";
-            this.chbFieldUnique.Size = new System.Drawing.Size(97, 17);
-            this.chbFieldUnique.TabIndex = 6;
-            this.chbFieldUnique.Text = "Unique column";
-            this.chbFieldUnique.UseVisualStyleBackColor = true;
-            // 
-            // txtFieldAutoIncreColumn
-            // 
-            this.txtFieldAutoIncreColumn.Enabled = false;
-            this.txtFieldAutoIncreColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldAutoIncreColumn.Location = new System.Drawing.Point(34, 140);
-            this.txtFieldAutoIncreColumn.Name = "txtFieldAutoIncreColumn";
-            this.txtFieldAutoIncreColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldAutoIncreColumn.TabIndex = 4;
-            this.txtFieldAutoIncreColumn.Text = "I";
-            // 
-            // txtFieldDefValueColumn
-            // 
-            this.txtFieldDefValueColumn.Enabled = false;
-            this.txtFieldDefValueColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldDefValueColumn.Location = new System.Drawing.Point(191, 140);
-            this.txtFieldDefValueColumn.Name = "txtFieldDefValueColumn";
-            this.txtFieldDefValueColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldDefValueColumn.TabIndex = 4;
-            this.txtFieldDefValueColumn.Text = "J";
-            // 
-            // txtFieldRemarkColumn
-            // 
-            this.txtFieldRemarkColumn.Enabled = false;
-            this.txtFieldRemarkColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldRemarkColumn.Location = new System.Drawing.Point(384, 140);
-            this.txtFieldRemarkColumn.Name = "txtFieldRemarkColumn";
-            this.txtFieldRemarkColumn.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldRemarkColumn.TabIndex = 4;
-            this.txtFieldRemarkColumn.Text = "K";
-            // 
-            // chbFieldAutoIncre
-            // 
-            this.chbFieldAutoIncre.AutoSize = true;
-            this.chbFieldAutoIncre.Checked = true;
-            this.chbFieldAutoIncre.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbFieldAutoIncre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbFieldAutoIncre.Location = new System.Drawing.Point(34, 121);
-            this.chbFieldAutoIncre.Name = "chbFieldAutoIncre";
-            this.chbFieldAutoIncre.Size = new System.Drawing.Size(134, 17);
-            this.chbFieldAutoIncre.TabIndex = 6;
-            this.chbFieldAutoIncre.Text = "Auto-increment column";
-            this.chbFieldAutoIncre.UseVisualStyleBackColor = true;
-            // 
-            // chbFieldDefaultValue
-            // 
-            this.chbFieldDefaultValue.AutoSize = true;
-            this.chbFieldDefaultValue.Checked = true;
-            this.chbFieldDefaultValue.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbFieldDefaultValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbFieldDefaultValue.Location = new System.Drawing.Point(191, 121);
-            this.chbFieldDefaultValue.Name = "chbFieldDefaultValue";
-            this.chbFieldDefaultValue.Size = new System.Drawing.Size(126, 17);
-            this.chbFieldDefaultValue.TabIndex = 6;
-            this.chbFieldDefaultValue.Text = "Default value column";
-            this.chbFieldDefaultValue.UseVisualStyleBackColor = true;
+            this.chbFieldAttribute.AutoSize = true;
+            this.chbFieldAttribute.Checked = true;
+            this.chbFieldAttribute.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbFieldAttribute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbFieldAttribute.Location = new System.Drawing.Point(276, 64);
+            this.chbFieldAttribute.Name = "chbFieldAttribute";
+            this.chbFieldAttribute.Size = new System.Drawing.Size(102, 17);
+            this.chbFieldAttribute.TabIndex = 6;
+            this.chbFieldAttribute.Text = "Attribute column";
+            this.chbFieldAttribute.UseVisualStyleBackColor = true;
             // 
             // chbFieldRemark
             // 
@@ -591,18 +431,206 @@
             this.chbFieldRemark.Text = "Remark column";
             this.chbFieldRemark.UseVisualStyleBackColor = true;
             // 
-            // chbFieldPrimary
+            // chbFieldDefaultValue
             // 
-            this.chbFieldPrimary.AutoSize = true;
-            this.chbFieldPrimary.Checked = true;
-            this.chbFieldPrimary.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbFieldPrimary.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbFieldPrimary.Location = new System.Drawing.Point(484, 64);
-            this.chbFieldPrimary.Name = "chbFieldPrimary";
-            this.chbFieldPrimary.Size = new System.Drawing.Size(97, 17);
-            this.chbFieldPrimary.TabIndex = 6;
-            this.chbFieldPrimary.Text = "Primary column";
-            this.chbFieldPrimary.UseVisualStyleBackColor = true;
+            this.chbFieldDefaultValue.AutoSize = true;
+            this.chbFieldDefaultValue.Checked = true;
+            this.chbFieldDefaultValue.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbFieldDefaultValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbFieldDefaultValue.Location = new System.Drawing.Point(191, 121);
+            this.chbFieldDefaultValue.Name = "chbFieldDefaultValue";
+            this.chbFieldDefaultValue.Size = new System.Drawing.Size(126, 17);
+            this.chbFieldDefaultValue.TabIndex = 6;
+            this.chbFieldDefaultValue.Text = "Default value column";
+            this.chbFieldDefaultValue.UseVisualStyleBackColor = true;
+            // 
+            // chbFieldAutoIncre
+            // 
+            this.chbFieldAutoIncre.AutoSize = true;
+            this.chbFieldAutoIncre.Checked = true;
+            this.chbFieldAutoIncre.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbFieldAutoIncre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbFieldAutoIncre.Location = new System.Drawing.Point(34, 121);
+            this.chbFieldAutoIncre.Name = "chbFieldAutoIncre";
+            this.chbFieldAutoIncre.Size = new System.Drawing.Size(134, 17);
+            this.chbFieldAutoIncre.TabIndex = 6;
+            this.chbFieldAutoIncre.Text = "Auto-increment column";
+            this.chbFieldAutoIncre.UseVisualStyleBackColor = true;
+            // 
+            // chbFieldSize
+            // 
+            this.chbFieldSize.AutoSize = true;
+            this.chbFieldSize.Checked = true;
+            this.chbFieldSize.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbFieldSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbFieldSize.Location = new System.Drawing.Point(191, 64);
+            this.chbFieldSize.Name = "chbFieldSize";
+            this.chbFieldSize.Size = new System.Drawing.Size(83, 17);
+            this.chbFieldSize.TabIndex = 6;
+            this.chbFieldSize.Text = "Size column";
+            this.chbFieldSize.UseVisualStyleBackColor = true;
+            // 
+            // txtFieldUniqueColumn
+            // 
+            this.txtFieldUniqueColumn.Enabled = false;
+            this.txtFieldUniqueColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldUniqueColumn.Location = new System.Drawing.Point(594, 83);
+            this.txtFieldUniqueColumn.Name = "txtFieldUniqueColumn";
+            this.txtFieldUniqueColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldUniqueColumn.TabIndex = 4;
+            this.txtFieldUniqueColumn.Text = "H";
+            // 
+            // txtFieldPrimaryColumn
+            // 
+            this.txtFieldPrimaryColumn.Enabled = false;
+            this.txtFieldPrimaryColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldPrimaryColumn.Location = new System.Drawing.Point(484, 83);
+            this.txtFieldPrimaryColumn.Name = "txtFieldPrimaryColumn";
+            this.txtFieldPrimaryColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldPrimaryColumn.TabIndex = 4;
+            this.txtFieldPrimaryColumn.Text = "G";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(112, 64);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Type column";
+            // 
+            // txtFieldNullableColumn
+            // 
+            this.txtFieldNullableColumn.Enabled = false;
+            this.txtFieldNullableColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldNullableColumn.Location = new System.Drawing.Point(384, 83);
+            this.txtFieldNullableColumn.Name = "txtFieldNullableColumn";
+            this.txtFieldNullableColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldNullableColumn.TabIndex = 4;
+            this.txtFieldNullableColumn.Text = "F";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(34, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Name column";
+            // 
+            // txtFieldAttributeColumn
+            // 
+            this.txtFieldAttributeColumn.Enabled = false;
+            this.txtFieldAttributeColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldAttributeColumn.Location = new System.Drawing.Point(276, 83);
+            this.txtFieldAttributeColumn.Name = "txtFieldAttributeColumn";
+            this.txtFieldAttributeColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldAttributeColumn.TabIndex = 4;
+            this.txtFieldAttributeColumn.Text = "E";
+            // 
+            // txtFieldSizeColumn
+            // 
+            this.txtFieldSizeColumn.Enabled = false;
+            this.txtFieldSizeColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldSizeColumn.Location = new System.Drawing.Point(191, 83);
+            this.txtFieldSizeColumn.Name = "txtFieldSizeColumn";
+            this.txtFieldSizeColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldSizeColumn.TabIndex = 4;
+            this.txtFieldSizeColumn.Text = "D";
+            // 
+            // txtFieldRemarkColumn
+            // 
+            this.txtFieldRemarkColumn.Enabled = false;
+            this.txtFieldRemarkColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldRemarkColumn.Location = new System.Drawing.Point(384, 140);
+            this.txtFieldRemarkColumn.Name = "txtFieldRemarkColumn";
+            this.txtFieldRemarkColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldRemarkColumn.TabIndex = 4;
+            this.txtFieldRemarkColumn.Text = "K";
+            // 
+            // txtFieldDefValueColumn
+            // 
+            this.txtFieldDefValueColumn.Enabled = false;
+            this.txtFieldDefValueColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldDefValueColumn.Location = new System.Drawing.Point(191, 140);
+            this.txtFieldDefValueColumn.Name = "txtFieldDefValueColumn";
+            this.txtFieldDefValueColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldDefValueColumn.TabIndex = 4;
+            this.txtFieldDefValueColumn.Text = "J";
+            // 
+            // txtFieldAutoIncreColumn
+            // 
+            this.txtFieldAutoIncreColumn.Enabled = false;
+            this.txtFieldAutoIncreColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldAutoIncreColumn.Location = new System.Drawing.Point(34, 140);
+            this.txtFieldAutoIncreColumn.Name = "txtFieldAutoIncreColumn";
+            this.txtFieldAutoIncreColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldAutoIncreColumn.TabIndex = 4;
+            this.txtFieldAutoIncreColumn.Text = "I";
+            // 
+            // txtFieldTypeColumn
+            // 
+            this.txtFieldTypeColumn.Enabled = false;
+            this.txtFieldTypeColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldTypeColumn.Location = new System.Drawing.Point(112, 83);
+            this.txtFieldTypeColumn.Name = "txtFieldTypeColumn";
+            this.txtFieldTypeColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldTypeColumn.TabIndex = 4;
+            this.txtFieldTypeColumn.Text = "C";
+            // 
+            // txtFieldNameColumn
+            // 
+            this.txtFieldNameColumn.Enabled = false;
+            this.txtFieldNameColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldNameColumn.Location = new System.Drawing.Point(34, 83);
+            this.txtFieldNameColumn.Name = "txtFieldNameColumn";
+            this.txtFieldNameColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldNameColumn.TabIndex = 4;
+            this.txtFieldNameColumn.Text = "B";
+            // 
+            // txtStartRow
+            // 
+            this.txtStartRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStartRow.Location = new System.Drawing.Point(34, 35);
+            this.txtStartRow.Name = "txtStartRow";
+            this.txtStartRow.Size = new System.Drawing.Size(33, 20);
+            this.txtStartRow.TabIndex = 1;
+            this.txtStartRow.Text = "6";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(34, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Start row";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(503, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Exclude";
+            // 
+            // lstExcludeSheets
+            // 
+            this.lstExcludeSheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstExcludeSheets.FormattingEnabled = true;
+            this.lstExcludeSheets.Items.AddRange(new object[] {
+            "References"});
+            this.lstExcludeSheets.Location = new System.Drawing.Point(547, 12);
+            this.lstExcludeSheets.Name = "lstExcludeSheets";
+            this.lstExcludeSheets.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.lstExcludeSheets.Size = new System.Drawing.Size(144, 43);
+            this.lstExcludeSheets.Sorted = true;
+            this.lstExcludeSheets.TabIndex = 3;
             // 
             // frmGenerator
             // 
@@ -624,10 +652,10 @@
             this.grbApplyTo.ResumeLayout(false);
             this.grbApplyTo.PerformLayout();
             this.grbSettings.ResumeLayout(false);
-            this.grbTableName.ResumeLayout(false);
-            this.grbTableName.PerformLayout();
             this.grbTableComment.ResumeLayout(false);
             this.grbTableComment.PerformLayout();
+            this.grbTableName.ResumeLayout(false);
+            this.grbTableName.PerformLayout();
             this.grbFieldData.ResumeLayout(false);
             this.grbFieldData.PerformLayout();
             this.ResumeLayout(false);
@@ -681,5 +709,7 @@
         private System.Windows.Forms.CheckBox chbFieldDefaultValue;
         private System.Windows.Forms.CheckBox chbFieldAutoIncre;
         private System.Windows.Forms.CheckBox chbFieldPrimary;
+        private System.Windows.Forms.ListBox lstExcludeSheets;
+        private System.Windows.Forms.Label label6;
     }
 }

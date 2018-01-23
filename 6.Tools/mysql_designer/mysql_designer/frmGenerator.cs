@@ -22,27 +22,19 @@ namespace mysql_designer
             InitializeComponent();
         }
 
-        private string ResourceString(string index)
-        {
-            try
-            {
-                return Properties.Resources.ResourceManager.GetString(index);
-            }
-            catch
-            {
-                return index;
-            }
-        }
-
         private void frmGenerator_Load(object sender, EventArgs e)
         {
+            cbSheets.Items.Clear();
+            lstExcludeSheets.Items.Clear();
             if(null != Book)
             {
                 foreach(Excel.Worksheet sheet in Book.Sheets)
                 {
                     cbSheets.Items.Add(sheet.Name);
+                    lstExcludeSheets.Items.Add(sheet.Name);
                 }
             }
+            lstExcludeSheets.SelectedIndex = lstExcludeSheets.FindString("References");
         }
 
         private void frmGenerator_FormClosing(object sender, FormClosingEventArgs e)
@@ -58,6 +50,7 @@ namespace mysql_designer
         {
             cbSheets.SelectedIndex = -1;
             cbSheets.Enabled = false;
+            lstExcludeSheets.Enabled = true;
         }
 
         private void radCurrentSheet_CheckedChanged(object sender, EventArgs e)
@@ -70,12 +63,14 @@ namespace mysql_designer
                     cbSheets.SelectedIndex = cbSheets.FindString(curSheet.Name);
                 }
             }
+            lstExcludeSheets.Enabled = false;
             cbSheets.Enabled = false;
         }
 
         private void radSpecifiedSheet_CheckedChanged(object sender, EventArgs e)
         {
             cbSheets.Enabled = true;
+            lstExcludeSheets.Enabled = false;
             if (cbSheets.SelectedIndex == -1)
             {
                 cbSheets.SelectedIndex = 0;
@@ -135,7 +130,7 @@ namespace mysql_designer
                 }
             }
 
-            string query = strCreate + " " + tblName + "(\n";
+            string query = strCreate + " " + tblName + "("+Environment.NewLine;
             uint fieldCount = 0;
             //Obtain fields
             List<string> primaryKeys=new List<string>();
@@ -286,7 +281,7 @@ namespace mysql_designer
 
                     if(fieldCount > 0)
                     {
-                        query += ",\n";
+                        query += ","+Environment.NewLine;
                     }
 
                     query += fieldCommand;
@@ -303,7 +298,7 @@ namespace mysql_designer
             }
 
 
-            query += "\n)";
+            query += Environment.NewLine+ ")";
 
             if (tblComment.Length > 0)
             {
@@ -314,13 +309,13 @@ namespace mysql_designer
 
             if( (primaryKeys.Count > 0) || (uniqueKeys.Count > 0))
             {
-                query += ("\nALTER TABLE " + tblName + "\n");
+                query += (Environment.NewLine + "ALTER TABLE " + tblName + Environment.NewLine);
                 ushort keyCount = 0;
                 foreach(string fieldName in primaryKeys)
                 {
                     if(keyCount > 0)
                     {
-                        query += (",\n");
+                        query += (","+Environment.NewLine);
                     }
 
                     keyCount++;
@@ -331,7 +326,7 @@ namespace mysql_designer
                 {
                     if (keyCount > 0)
                     {
-                        query += (",\n");
+                        query += (","+Environment.NewLine);
                     }
                     keyCount++;
 
@@ -347,25 +342,38 @@ namespace mysql_designer
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             Logger.Instance.Reset();
-
+            frmScriptEditor frm = new frmScriptEditor();
             if (radAllSheets.Checked)
             {
+                bool excluded = false;
                 foreach(Excel.Worksheet sheet in Book.Sheets)
                 {
-                    MessageBox.Show(CreateTable(sheet));
+                    excluded = false;
+                    foreach(string item in lstExcludeSheets.SelectedItems)
+                    {
+                        if(string.Compare(item, sheet.Name, true) == 0)
+                        {
+                            excluded = true;
+                            break;
+                        }
+                    }
+                    if (!excluded)
+                    {
+                        frm.Script += CreateTable(sheet) + Environment.NewLine;
+                    }
                 }
             }
             else if (radCurrentSheet.Checked)
             {
                 Excel.Worksheet curSheet = Book.ActiveSheet;
-                MessageBox.Show(CreateTable(curSheet));
+                frm.Script += CreateTable(curSheet);
             }
             else
             {
                 int selectedSheetIndex = cbSheets.SelectedIndex;
                 if (selectedSheetIndex == -1)
                 {
-                    MessageBox.Show(ResourceString(Constants.MSG_NO_SHEET_SPECIFIED), ResourceString(Constants.STR_WARNING), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Constants.GetResourceString(Constants.MSG_NO_SHEET_SPECIFIED), Constants.GetResourceString(Constants.STR_WARNING), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cbSheets.Focus();
                     return;
                 }
@@ -373,13 +381,15 @@ namespace mysql_designer
                 Excel.Worksheet  selectedSheet = Book.Sheets[sheetName];
                 if (null == selectedSheet)
                 {
-                    MessageBox.Show(ResourceString(Constants.MSG_SHEET_CANNOT_FOUND), ResourceString(Constants.STR_WARNING), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Constants.GetResourceString(Constants.MSG_SHEET_CANNOT_FOUND), Constants.GetResourceString(Constants.STR_WARNING), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cbSheets.Focus();
                     return;
                 }
 
-                MessageBox.Show(CreateTable(selectedSheet));
+                frm.Script += CreateTable(selectedSheet);
             }
+
+            frm.ShowDialog();
         }
 
         private void cbSheets_SelectedIndexChanged(object sender, EventArgs e)

@@ -160,6 +160,12 @@
       <DependentUpon>frmGenerator.cs</DependentUpon>
     </Compile>
     <Compile Include="ExcelHelper.cs" />
+    <Compile Include="frmScriptEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmScriptEditor.Designer.cs">
+      <DependentUpon>frmScriptEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="MySQLRibbon.cs">
       <SubType>Component</SubType>
@@ -169,6 +175,9 @@
     </Compile>
     <EmbeddedResource Include="frmGenerator.resx">
       <DependentUpon>frmGenerator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmScriptEditor.resx">
+      <DependentUpon>frmScriptEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

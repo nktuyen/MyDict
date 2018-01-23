@@ -70,6 +70,15 @@ namespace mysql_designer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Content is saved successful.
+        /// </summary>
+        internal static string MSG_SCRIPT_IS_SAVED_SUCCESS {
+            get {
+                return ResourceManager.GetString("MSG_SCRIPT_IS_SAVED_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MSG_SHEET_CANNOT_FOUND.
         /// </summary>
         internal static string MSG_SHEET_CANNOT_FOUND {
@@ -131,6 +140,78 @@ namespace mysql_designer.Properties {
         internal static string MySQL_Designer_Menu_Label {
             get {
                 return ResourceManager.GetString("MySQL_Designer_Menu_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MySQL Designer.
+        /// </summary>
+        internal static string STR_APPNAME {
+            get {
+                return ResourceManager.GetString("STR_APPNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string STR_ERROR {
+            get {
+                return ResourceManager.GetString("STR_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Execute.
+        /// </summary>
+        internal static string STR_EXECUTE {
+            get {
+                return ResourceManager.GetString("STR_EXECUTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All files(*.*)|*.*||.
+        /// </summary>
+        internal static string STR_FILESAVEFILTERS {
+            get {
+                return ResourceManager.GetString("STR_FILESAVEFILTERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string STR_INFORMATION {
+            get {
+                return ResourceManager.GetString("STR_INFORMATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string STR_OPEN {
+            get {
+                return ResourceManager.GetString("STR_OPEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string STR_SAVE {
+            get {
+                return ResourceManager.GetString("STR_SAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string STR_WARNING {
+            get {
+                return ResourceManager.GetString("STR_WARNING", resourceCulture);
             }
         }
     }
