@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load" loadImage="Ribbon_GetImage">
+  <ribbon>
+    <tabs>
+      <tab idMso="TabAddIns">
+        <group id="MySQL_Designer">
+            <menu id="MySQL_Designer_Menu" getLabel="Ribbon_GetLabel" getEnabled="Ribbon_GetEnabled">
+                <button id="MySQL_Designer_btnGenerate" getEnabled="Ribbon_GetEnabled" getLabel="Ribbon_GetLabel" image="MySQL_Designer_btnGenerate" onAction="Ribbon_OnAction" />
+                <menuSeparator id="MySQL_Designer_Menu_S1"/>
+                <button id="MySQL_Designer_btnAbout"  getEnabled="Ribbon_GetEnabled" getLabel="Ribbon_GetLabel"  image="MySQL_Designer_btnAbout" onAction="Ribbon_OnAction" />
+            </menu>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+

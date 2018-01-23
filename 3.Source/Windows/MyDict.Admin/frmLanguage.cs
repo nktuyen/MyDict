@@ -91,6 +91,9 @@ namespace MyDict.Admin
                 case HttpStatusCode.OK:
                     MessageBox.Show("OK", "HttpStatusCode", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
+                case 0:
+                    MessageBox.Show("Unknow error", "HttpStatusCode", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
                 default:
                     return true;
             }
