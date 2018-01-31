@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.grbApplyTo = new System.Windows.Forms.GroupBox();
+            this.lstExcludeSheets = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.cbSheets = new System.Windows.Forms.ComboBox();
             this.radSpecifiedSheet = new System.Windows.Forms.RadioButton();
             this.radCurrentSheet = new System.Windows.Forms.RadioButton();
@@ -73,8 +75,6 @@
             this.txtFieldNameColumn = new System.Windows.Forms.TextBox();
             this.txtStartRow = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lstExcludeSheets = new System.Windows.Forms.ListBox();
             this.grbApplyTo.SuspendLayout();
             this.grbSettings.SuspendLayout();
             this.grbTableComment.SuspendLayout();
@@ -98,9 +98,33 @@
             this.grbApplyTo.TabStop = false;
             this.grbApplyTo.Text = "Apply To";
             // 
+            // lstExcludeSheets
+            // 
+            this.lstExcludeSheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstExcludeSheets.FormattingEnabled = true;
+            this.lstExcludeSheets.Items.AddRange(new object[] {
+            "References"});
+            this.lstExcludeSheets.Location = new System.Drawing.Point(547, 12);
+            this.lstExcludeSheets.Name = "lstExcludeSheets";
+            this.lstExcludeSheets.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstExcludeSheets.Size = new System.Drawing.Size(144, 43);
+            this.lstExcludeSheets.Sorted = true;
+            this.lstExcludeSheets.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(503, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Exclude";
+            // 
             // cbSheets
             // 
             this.cbSheets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbSheets.FormattingEnabled = true;
             this.cbSheets.Location = new System.Drawing.Point(241, 18);
             this.cbSheets.Name = "cbSheets";
@@ -608,29 +632,6 @@
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Start row";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(503, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Exclude";
-            // 
-            // lstExcludeSheets
-            // 
-            this.lstExcludeSheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstExcludeSheets.FormattingEnabled = true;
-            this.lstExcludeSheets.Items.AddRange(new object[] {
-            "References"});
-            this.lstExcludeSheets.Location = new System.Drawing.Point(547, 12);
-            this.lstExcludeSheets.Name = "lstExcludeSheets";
-            this.lstExcludeSheets.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstExcludeSheets.Size = new System.Drawing.Size(144, 43);
-            this.lstExcludeSheets.Sorted = true;
-            this.lstExcludeSheets.TabIndex = 3;
             // 
             // frmGenerator
             // 

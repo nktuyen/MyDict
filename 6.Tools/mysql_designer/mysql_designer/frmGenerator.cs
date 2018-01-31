@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using MySql.Data.MySqlClient;
 
 namespace mysql_designer
 {
@@ -133,10 +134,11 @@ namespace mysql_designer
             string query = strCreate + " " + tblName + "("+Environment.NewLine;
             uint fieldCount = 0;
             //Obtain fields
-            List<string> primaryKeys=new List<string>();
+            Dictionary<string, string> primaryKeys = new Dictionary<string, string>();
             List<string> uniqueKeys=new List<string>();
             string fieldCommand = string.Empty;
             string fieldNotNull = string.Empty;
+            string fieldAutoIncrement = string.Empty;
             int row = int.Parse(txtStartRow.Text);
             Excel.Range fieldNameCell = null;
             Excel.Range fieldTypeCell = null;
@@ -229,7 +231,7 @@ namespace mysql_designer
                             {
                                 if (((string)fieldPrimaryCell.Text).Length > 0)
                                 {
-                                    primaryKeys.Add(fieldNameCell.Text);
+                                    primaryKeys.Add(fieldNameCell.Text, fieldNameCell.Text);
                                 }
                             }
                         }
@@ -251,6 +253,49 @@ namespace mysql_designer
                                 if (((string)fieldUniqueCell.Text).Length > 0)
                                 {
                                     uniqueKeys.Add(fieldNameCell.Text);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
+                            return string.Empty;
+                        }
+                    }
+
+                    fieldAutoIncrement = string.Empty;
+                    if (chbFieldAutoIncre.Checked)
+                    {
+                        try
+                        {
+                            fieldAutoIncreCell = sheet.Range[txtFieldAutoIncreColumn.Text + row];
+                            if (null != fieldAutoIncreCell)
+                            {
+                                if( ((string)fieldAutoIncreCell.Text).Length > 0){
+                                    fieldAutoIncrement = " AUTO_INCREMENT";
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
+                            return string.Empty;
+                        }
+                    }
+                    if ( (fieldAutoIncrement.Length > 0) && (!primaryKeys.ContainsKey(fieldNameCell.Text)) )  {
+                        fieldCommand += fieldAutoIncrement;
+                    }
+
+                    if (chbFieldDefaultValue.Checked)
+                    {
+                        try
+                        {
+                            fieldDefaultValueCell = sheet.Range[txtFieldDefValueColumn.Text + row];
+                            if (null != fieldDefaultValueCell)
+                            {
+                                if (((string)fieldDefaultValueCell.Text).Length > 0)
+                                {
+                                    fieldCommand += (" DEFAULT " + fieldDefaultValueCell.Text);
                                 }
                             }
                         }
@@ -298,7 +343,7 @@ namespace mysql_designer
             }
 
 
-            query += Environment.NewLine+ ")";
+            query += Environment.NewLine+ ") DEFAULT CHARSET=utf8";
 
             if (tblComment.Length > 0)
             {
@@ -311,7 +356,7 @@ namespace mysql_designer
             {
                 query += (Environment.NewLine + "ALTER TABLE " + tblName + Environment.NewLine);
                 ushort keyCount = 0;
-                foreach(string fieldName in primaryKeys)
+                foreach(string fieldName in primaryKeys.Values)
                 {
                     if(keyCount > 0)
                     {

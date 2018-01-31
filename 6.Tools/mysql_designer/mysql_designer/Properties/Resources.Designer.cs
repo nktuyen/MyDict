@@ -61,11 +61,29 @@ namespace mysql_designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MSG_NO_SHEET_SPECIFIED.
+        ///   Looks up a localized string similar to Server address is invalid.
+        /// </summary>
+        internal static string MSG_INVALID_ADDRESS {
+            get {
+                return ResourceManager.GetString("MSG_INVALID_ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No sheet is specified.
         /// </summary>
         internal static string MSG_NO_SHEET_SPECIFIED {
             get {
                 return ResourceManager.GetString("MSG_NO_SHEET_SPECIFIED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statements are executed successful.
+        /// </summary>
+        internal static string MSG_SCRIPT_EXECUTE_SUCCESS {
+            get {
+                return ResourceManager.GetString("MSG_SCRIPT_EXECUTE_SUCCESS", resourceCulture);
             }
         }
         
@@ -79,7 +97,7 @@ namespace mysql_designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MSG_SHEET_CANNOT_FOUND.
+        ///   Looks up a localized string similar to Sheet cannot found.
         /// </summary>
         internal static string MSG_SHEET_CANNOT_FOUND {
             get {
@@ -88,11 +106,21 @@ namespace mysql_designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MSG_TABLE_NAME_CELL_INDEX_CANNOT_BE_EMPTY.
+        ///   Looks up a localized string similar to Cell address for table name cannot be empty.
         /// </summary>
         internal static string MSG_TABLE_NAME_CELL_INDEX_CANNOT_BE_EMPTY {
             get {
                 return ResourceManager.GetString("MSG_TABLE_NAME_CELL_INDEX_CANNOT_BE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon mysql_designer {
+            get {
+                object obj = ResourceManager.GetObject("mysql_designer", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -171,7 +199,7 @@ namespace mysql_designer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All files(*.*)|*.*||.
+        ///   Looks up a localized string similar to All files(*.*)|*.*|SQL scripts(*.sql)|*.sql.
         /// </summary>
         internal static string STR_FILESAVEFILTERS {
             get {

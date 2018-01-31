@@ -7,9 +7,9 @@ using System.Security;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("mysql_designer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("MySQL Designer add-in for Excel")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("NKTUYEN")]
 [assembly: AssemblyProduct("mysql_designer")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]

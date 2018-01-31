@@ -4,7 +4,7 @@
     <tabs>
       <tab idMso="TabAddIns">
         <group id="MySQL_Designer">
-            <menu id="MySQL_Designer_Menu" getLabel="Ribbon_GetLabel" getEnabled="Ribbon_GetEnabled">
+            <menu id="MySQL_Designer_Menu" getLabel="Ribbon_GetLabel" getEnabled="Ribbon_GetEnabled" image="mysql_designer">
                 <button id="MySQL_Designer_btnGenerate" getEnabled="Ribbon_GetEnabled" getLabel="Ribbon_GetLabel" image="MySQL_Designer_btnGenerate" onAction="Ribbon_OnAction" />
                 <menuSeparator id="MySQL_Designer_Menu_S1"/>
                 <button id="MySQL_Designer_btnAbout"  getEnabled="Ribbon_GetEnabled" getLabel="Ribbon_GetLabel"  image="MySQL_Designer_btnAbout" onAction="Ribbon_OnAction" />

@@ -111,6 +111,12 @@ namespace mysql_designer
                         
                     }
                 }
+
+                else if(string.Compare(control.Id, "MySQL_Designer_btnAbout") == 0)
+                {
+                    frmAbout frm = new frmAbout();
+                    frm.ShowDialog();
+                }
             }
         }
 

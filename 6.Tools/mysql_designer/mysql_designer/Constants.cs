@@ -18,6 +18,8 @@ namespace mysql_designer
         public static string MSG_NO_SHEET_SPECIFIED = "MSG_NO_SHEET_SPECIFIED";
         public static string MSG_SHEET_CANNOT_FOUND = "MSG_SHEET_CANNOT_FOUND";
         public static string MSG_SCRIPT_IS_SAVED_SUCCESS = "MSG_SCRIPT_IS_SAVED_SUCCESS";
+        public static string MSG_INVALID_ADDRESS = "MSG_INVALID_ADDRESS";
+        public static string MSG_SCRIPT_EXECUTE_SUCCESS = "MSG_SCRIPT_EXECUTE_SUCCESS";
 
         public static string GetResourceString(string key)
         {
