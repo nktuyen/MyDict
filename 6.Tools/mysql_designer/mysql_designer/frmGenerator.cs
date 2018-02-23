@@ -454,5 +454,53 @@ namespace mysql_designer
             txtTableNameCellColumn.Enabled = true;
             txtTableNameCellRow.Focus();
         }
+
+        private void chbFieldForeignKey_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldForeignKeyCol.Enabled = chbFieldForeignKey.Checked;
+            txtFieldRefTableNameCol.Enabled = chbFieldForeignKey.Checked;
+            txtFieldOnDeleteAction.Enabled = chbFieldForeignKey.Checked;
+            txtFieldOnUpdateAction.Enabled = chbFieldForeignKey.Checked;
+        }
+
+        private void chbFieldSize_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldSizeColumn.Enabled = chbFieldSize.Checked;
+        }
+
+        private void chbFieldAttribute_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldAttributeColumn.Enabled = chbFieldAttribute.Checked;
+        }
+
+        private void chbFieldNullable_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldNullableColumn.Enabled = chbFieldNullable.Checked;
+        }
+
+        private void chbFieldPrimary_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldPrimaryColumn.Enabled = chbFieldPrimary.Checked;
+        }
+
+        private void chbFieldUnique_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldUniqueColumn.Enabled = chbFieldUnique.Checked;
+        }
+
+        private void chbFieldAutoIncre_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldAutoIncreColumn.Enabled = chbFieldAutoIncre.Checked;
+        }
+
+        private void chbFieldDefaultValue_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldDefValueColumn.Enabled = chbFieldDefaultValue.Checked;
+        }
+
+        private void chbFieldRemark_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldRemarkColumn.Enabled = chbFieldRemark.Checked;
+        }
     }
 }
