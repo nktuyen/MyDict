@@ -15,6 +15,7 @@ namespace mysql_designer
     public partial class frmScriptEditor : Form
     {
         private string _script = string.Empty;
+        public List<string> Tables { get; private set; }
         private string Server { get; set; }
         private string User { get; set; }
         private string Password { get; set; }
@@ -31,7 +32,7 @@ namespace mysql_designer
         public frmScriptEditor()
         {
             InitializeComponent();
-
+            Tables = new List<string>();
             Server = "127.0.0.1";
             User = "root";
         }
@@ -62,6 +63,10 @@ namespace mysql_designer
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Title = Constants.GetResourceString(Constants.STR_SAVE);
             dlg.Filter = Constants.GetResourceString(Constants.STR_FILESAVEFILTERS);
+            if(this.Tables.Count==1)
+            {
+                dlg.FileName = Tables[0];
+            }
             dlg.OverwritePrompt = true;
             if(dlg.ShowDialog() == DialogResult.OK)
             {

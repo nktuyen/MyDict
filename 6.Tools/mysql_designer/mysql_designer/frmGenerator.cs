@@ -132,9 +132,10 @@ namespace mysql_designer
             }
 
             string query = strCreate + " " + tblName + "("+Environment.NewLine;
-            uint fieldCount = 0;
+            uint fieldIndex = 0;
             //Obtain fields
             Dictionary<string, string> primaryKeys = new Dictionary<string, string>();
+            Dictionary<string, ForeignKeyInfo> foreignKeys = new Dictionary<string, ForeignKeyInfo>();
             List<string> uniqueKeys=new List<string>();
             string fieldCommand = string.Empty;
             string fieldNotNull = string.Empty;
@@ -149,6 +150,9 @@ namespace mysql_designer
             Excel.Range fieldUniqueCell = null;
             Excel.Range fieldAutoIncreCell = null;
             Excel.Range fieldDefaultValueCell = null;
+            Excel.Range fieldForeignKeyValueCell = null;
+            Excel.Range fieldForeignTableValueCell = null;
+            Excel.Range fieldForeignSourceFieldValueCell = null;
             Excel.Range fieldRemarkCell = null;
 
             try
@@ -263,6 +267,7 @@ namespace mysql_designer
                         }
                     }
 
+                    //AutoIncrement
                     fieldAutoIncrement = string.Empty;
                     if (chbFieldAutoIncre.Checked)
                     {
@@ -286,6 +291,7 @@ namespace mysql_designer
                         fieldCommand += fieldAutoIncrement;
                     }
 
+                    //Default Value
                     if (chbFieldDefaultValue.Checked)
                     {
                         try
@@ -296,6 +302,50 @@ namespace mysql_designer
                                 if (((string)fieldDefaultValueCell.Text).Length > 0)
                                 {
                                     fieldCommand += (" DEFAULT " + fieldDefaultValueCell.Text);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
+                            return string.Empty;
+                        }
+                    }
+
+                    //Foreign key
+                    if (chbFieldForeignKey.Checked)
+                    {
+                        try
+                        {
+                            fieldForeignKeyValueCell  = sheet.Range[txtFieldForeignKeyCol.Text + row];
+                            if (null != fieldForeignKeyValueCell)
+                            {
+                                if (((string)fieldForeignKeyValueCell.Text).Length > 0)
+                                {
+                                    ForeignKeyInfo foreignInfo = new ForeignKeyInfo(fieldNameCell.Text);
+                                    try
+                                    {
+                                        fieldForeignTableValueCell = sheet.Range[txtFieldRefTableNameCol.Text + row];
+                                        if(fieldForeignTableValueCell.Text != string.Empty)
+                                        {
+                                            foreignInfo.ForeignTable = fieldForeignTableValueCell.Text;
+
+                                            fieldForeignSourceFieldValueCell = sheet.Range[txtFieldRefSourceFieldCol.Text + row];
+                                            if(null!= fieldForeignSourceFieldValueCell)
+                                            {
+                                                if (fieldForeignSourceFieldValueCell.Text != string.Empty)
+                                                {
+                                                    foreignInfo.ForeignFieldName = fieldForeignSourceFieldValueCell.Text;
+                                                }
+                                            }
+                                            foreignKeys.Add(fieldNameCell.Text, foreignInfo);
+                                        }
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
+                                        return string.Empty;
+                                    }
                                 }
                             }
                         }
@@ -324,13 +374,13 @@ namespace mysql_designer
                         }
                     }
 
-                    if(fieldCount > 0)
+                    if(fieldIndex > 0)
                     {
-                        query += ","+Environment.NewLine;
+                        query += ("," + Environment.NewLine);
                     }
 
                     query += fieldCommand;
-                    fieldCount++;
+                    fieldIndex++;
                     row++;
                     fieldNameCell = sheet.Range[txtFieldNameColumn.Text + row];
                     fieldTypeCell = sheet.Range[txtFieldTypeColumn.Text + row];
@@ -342,8 +392,30 @@ namespace mysql_designer
                 return string.Empty;
             }
 
+            if (foreignKeys.Count > 0)
+            {
+                string foreignCommand = string.Empty;
+                uint foreignKeyCount = 0;
+                foreach(ForeignKeyInfo info in foreignKeys.Values)
+                {
+                    if (info.ForeignFieldName == string.Empty)
+                    {
+                        foreignCommand = string.Format("\tFOREIGN KEY ({0}) REFERENCES {1}({2})", info.FieldName, info.ForeignTable, info.FieldName);
+                    }
+                    else
+                    {
+                        foreignCommand = string.Format("\tFOREIGN KEY ({0}) REFERENCES {1}({2})", info.FieldName, info.ForeignTable, info.ForeignFieldName);
+                    }
 
-            query += Environment.NewLine+ ") DEFAULT CHARSET=utf8";
+                    query += ("," + Environment.NewLine);
+                    query += foreignCommand;
+                    foreignKeyCount++;
+                }
+                foreignKeys.Clear();
+            }
+
+
+            query += Environment.NewLine + ") DEFAULT CHARSET=utf8";
 
             if (tblComment.Length > 0)
             {
@@ -388,6 +460,7 @@ namespace mysql_designer
         {
             Logger.Instance.Reset();
             frmScriptEditor frm = new frmScriptEditor();
+            frm.Tables.Clear();
             if (radAllSheets.Checked)
             {
                 bool excluded = false;
@@ -405,6 +478,7 @@ namespace mysql_designer
                     if (!excluded)
                     {
                         frm.Script += CreateTable(sheet) + Environment.NewLine;
+                        frm.Tables.Add(sheet.Name);
                     }
                 }
             }
@@ -412,6 +486,7 @@ namespace mysql_designer
             {
                 Excel.Worksheet curSheet = Book.ActiveSheet;
                 frm.Script += CreateTable(curSheet);
+                frm.Tables.Add(curSheet.Name);
             }
             else
             {
@@ -432,6 +507,7 @@ namespace mysql_designer
                 }
 
                 frm.Script += CreateTable(selectedSheet);
+                frm.Tables.Add(sheetName);
             }
 
             frm.ShowDialog();
@@ -453,14 +529,6 @@ namespace mysql_designer
             txtTableNameCellRow.Enabled = true;
             txtTableNameCellColumn.Enabled = true;
             txtTableNameCellRow.Focus();
-        }
-
-        private void chbFieldForeignKey_CheckedChanged(object sender, EventArgs e)
-        {
-            txtFieldForeignKeyCol.Enabled = chbFieldForeignKey.Checked;
-            txtFieldRefTableNameCol.Enabled = chbFieldForeignKey.Checked;
-            txtFieldOnDeleteAction.Enabled = chbFieldForeignKey.Checked;
-            txtFieldOnUpdateAction.Enabled = chbFieldForeignKey.Checked;
         }
 
         private void chbFieldSize_CheckedChanged(object sender, EventArgs e)
@@ -501,6 +569,25 @@ namespace mysql_designer
         private void chbFieldRemark_CheckedChanged(object sender, EventArgs e)
         {
             txtFieldRemarkColumn.Enabled = chbFieldRemark.Checked;
+        }
+
+        private void chbFieldForeignKey_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFieldRefTableNameCol.Enabled = txtFieldRefSourceFieldCol.Enabled = txtFieldForeignKeyCol.Enabled = chbFieldForeignKey.Checked;
+        }
+
+        private void chbAllCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            chbFieldSize.Checked =
+            chbFieldAttribute.Checked =
+            chbFieldNullable.Checked =
+            chbFieldPrimary.Checked =
+            chbFieldUnique.Checked =
+            chbFieldAutoIncre.Checked =
+            chbFieldDefaultValue.Checked =
+            chbFieldRemark.Checked =
+            chbFieldForeignKey.Checked =
+            chbAllCheckbox.Checked;
         }
     }
 }

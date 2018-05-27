@@ -53,6 +53,14 @@
             this.radTableNameFromSheetName = new System.Windows.Forms.RadioButton();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.grbFieldData = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.chbFieldForeignKey = new System.Windows.Forms.CheckBox();
+            this.txtFieldRefSourceFieldCol = new System.Windows.Forms.TextBox();
+            this.txtFieldRefTableNameCol = new System.Windows.Forms.TextBox();
+            this.txtFieldForeignKeyCol = new System.Windows.Forms.TextBox();
             this.chbFieldUnique = new System.Windows.Forms.CheckBox();
             this.chbFieldPrimary = new System.Windows.Forms.CheckBox();
             this.chbFieldNullable = new System.Windows.Forms.CheckBox();
@@ -75,20 +83,13 @@
             this.txtFieldNameColumn = new System.Windows.Forms.TextBox();
             this.txtStartRow = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.chbFieldForeignKey = new System.Windows.Forms.CheckBox();
-            this.txtFieldForeignKeyCol = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtFieldRefTableNameCol = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtFieldOnDeleteAction = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtFieldOnUpdateAction = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.chbAllCheckbox = new System.Windows.Forms.CheckBox();
             this.grbApplyTo.SuspendLayout();
             this.grbSettings.SuspendLayout();
             this.grbTableComment.SuspendLayout();
             this.grbTableName.SuspendLayout();
             this.grbFieldData.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbApplyTo
@@ -359,7 +360,7 @@
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(334, 476);
+            this.btnGenerate.Location = new System.Drawing.Point(334, 460);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 25);
             this.btnGenerate.TabIndex = 2;
@@ -369,15 +370,11 @@
             // 
             // grbFieldData
             // 
-            this.grbFieldData.Controls.Add(this.label10);
-            this.grbFieldData.Controls.Add(this.label9);
-            this.grbFieldData.Controls.Add(this.label8);
-            this.grbFieldData.Controls.Add(this.label7);
+            this.grbFieldData.Controls.Add(this.groupBox1);
             this.grbFieldData.Controls.Add(this.chbFieldUnique);
             this.grbFieldData.Controls.Add(this.chbFieldPrimary);
             this.grbFieldData.Controls.Add(this.chbFieldNullable);
             this.grbFieldData.Controls.Add(this.chbFieldAttribute);
-            this.grbFieldData.Controls.Add(this.chbFieldForeignKey);
             this.grbFieldData.Controls.Add(this.chbFieldRemark);
             this.grbFieldData.Controls.Add(this.chbFieldDefaultValue);
             this.grbFieldData.Controls.Add(this.chbFieldAutoIncre);
@@ -389,10 +386,6 @@
             this.grbFieldData.Controls.Add(this.label4);
             this.grbFieldData.Controls.Add(this.txtFieldAttributeColumn);
             this.grbFieldData.Controls.Add(this.txtFieldSizeColumn);
-            this.grbFieldData.Controls.Add(this.txtFieldOnUpdateAction);
-            this.grbFieldData.Controls.Add(this.txtFieldOnDeleteAction);
-            this.grbFieldData.Controls.Add(this.txtFieldRefTableNameCol);
-            this.grbFieldData.Controls.Add(this.txtFieldForeignKeyCol);
             this.grbFieldData.Controls.Add(this.txtFieldRemarkColumn);
             this.grbFieldData.Controls.Add(this.txtFieldDefValueColumn);
             this.grbFieldData.Controls.Add(this.txtFieldAutoIncreColumn);
@@ -403,10 +396,97 @@
             this.grbFieldData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbFieldData.Location = new System.Drawing.Point(12, 235);
             this.grbFieldData.Name = "grbFieldData";
-            this.grbFieldData.Size = new System.Drawing.Size(707, 237);
+            this.grbFieldData.Size = new System.Drawing.Size(707, 218);
             this.grbFieldData.TabIndex = 3;
             this.grbFieldData.TabStop = false;
             this.grbFieldData.Text = "Field Settings";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.chbFieldForeignKey);
+            this.groupBox1.Controls.Add(this.txtFieldRefSourceFieldCol);
+            this.groupBox1.Controls.Add(this.txtFieldRefTableNameCol);
+            this.groupBox1.Controls.Add(this.txtFieldForeignKeyCol);
+            this.groupBox1.Location = new System.Drawing.Point(490, 121);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(211, 90);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(10, 69);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(145, 13);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Reference field name column";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(10, 44);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(149, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Reference table name column";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(10, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(99, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Foreign key column";
+            // 
+            // chbFieldForeignKey
+            // 
+            this.chbFieldForeignKey.AutoSize = true;
+            this.chbFieldForeignKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbFieldForeignKey.Location = new System.Drawing.Point(7, 0);
+            this.chbFieldForeignKey.Name = "chbFieldForeignKey";
+            this.chbFieldForeignKey.Size = new System.Drawing.Size(82, 17);
+            this.chbFieldForeignKey.TabIndex = 12;
+            this.chbFieldForeignKey.Text = "Foreign Key";
+            this.chbFieldForeignKey.UseVisualStyleBackColor = true;
+            this.chbFieldForeignKey.CheckedChanged += new System.EventHandler(this.chbFieldForeignKey_CheckedChanged);
+            // 
+            // txtFieldRefSourceFieldCol
+            // 
+            this.txtFieldRefSourceFieldCol.Enabled = false;
+            this.txtFieldRefSourceFieldCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldRefSourceFieldCol.Location = new System.Drawing.Point(178, 65);
+            this.txtFieldRefSourceFieldCol.Name = "txtFieldRefSourceFieldCol";
+            this.txtFieldRefSourceFieldCol.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldRefSourceFieldCol.TabIndex = 9;
+            this.txtFieldRefSourceFieldCol.Text = "N";
+            // 
+            // txtFieldRefTableNameCol
+            // 
+            this.txtFieldRefTableNameCol.Enabled = false;
+            this.txtFieldRefTableNameCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldRefTableNameCol.Location = new System.Drawing.Point(178, 41);
+            this.txtFieldRefTableNameCol.Name = "txtFieldRefTableNameCol";
+            this.txtFieldRefTableNameCol.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldRefTableNameCol.TabIndex = 10;
+            this.txtFieldRefTableNameCol.Text = "M";
+            // 
+            // txtFieldForeignKeyCol
+            // 
+            this.txtFieldForeignKeyCol.Enabled = false;
+            this.txtFieldForeignKeyCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldForeignKeyCol.Location = new System.Drawing.Point(178, 17);
+            this.txtFieldForeignKeyCol.Name = "txtFieldForeignKeyCol";
+            this.txtFieldForeignKeyCol.Size = new System.Drawing.Size(30, 20);
+            this.txtFieldForeignKeyCol.TabIndex = 11;
+            this.txtFieldForeignKeyCol.Text = "L";
             // 
             // chbFieldUnique
             // 
@@ -459,7 +539,6 @@
             // chbFieldRemark
             // 
             this.chbFieldRemark.AutoSize = true;
-            this.chbFieldRemark.Enabled = false;
             this.chbFieldRemark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbFieldRemark.Location = new System.Drawing.Point(384, 121);
             this.chbFieldRemark.Name = "chbFieldRemark";
@@ -642,103 +721,23 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Start row";
             // 
-            // chbFieldForeignKey
+            // chbAllCheckbox
             // 
-            this.chbFieldForeignKey.AutoSize = true;
-            this.chbFieldForeignKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbFieldForeignKey.Location = new System.Drawing.Point(484, 121);
-            this.chbFieldForeignKey.Name = "chbFieldForeignKey";
-            this.chbFieldForeignKey.Size = new System.Drawing.Size(82, 17);
-            this.chbFieldForeignKey.TabIndex = 6;
-            this.chbFieldForeignKey.Text = "Foreign Key";
-            this.chbFieldForeignKey.UseVisualStyleBackColor = true;
-            this.chbFieldForeignKey.CheckedChanged += new System.EventHandler(this.chbFieldForeignKey_CheckedChanged);
-            // 
-            // txtFieldForeignKeyCol
-            // 
-            this.txtFieldForeignKeyCol.Enabled = false;
-            this.txtFieldForeignKeyCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldForeignKeyCol.Location = new System.Drawing.Point(659, 138);
-            this.txtFieldForeignKeyCol.Name = "txtFieldForeignKeyCol";
-            this.txtFieldForeignKeyCol.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldForeignKeyCol.TabIndex = 4;
-            this.txtFieldForeignKeyCol.Text = "L";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(491, 141);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Foreign key column";
-            // 
-            // txtFieldRefTableNameCol
-            // 
-            this.txtFieldRefTableNameCol.Enabled = false;
-            this.txtFieldRefTableNameCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldRefTableNameCol.Location = new System.Drawing.Point(659, 162);
-            this.txtFieldRefTableNameCol.Name = "txtFieldRefTableNameCol";
-            this.txtFieldRefTableNameCol.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldRefTableNameCol.TabIndex = 4;
-            this.txtFieldRefTableNameCol.Text = "M";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(491, 164);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(149, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Reference table name column";
-            // 
-            // txtFieldOnDeleteAction
-            // 
-            this.txtFieldOnDeleteAction.Enabled = false;
-            this.txtFieldOnDeleteAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldOnDeleteAction.Location = new System.Drawing.Point(659, 186);
-            this.txtFieldOnDeleteAction.Name = "txtFieldOnDeleteAction";
-            this.txtFieldOnDeleteAction.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldOnDeleteAction.TabIndex = 4;
-            this.txtFieldOnDeleteAction.Text = "N";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(491, 187);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(124, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "On Delete action column";
-            // 
-            // txtFieldOnUpdateAction
-            // 
-            this.txtFieldOnUpdateAction.Enabled = false;
-            this.txtFieldOnUpdateAction.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldOnUpdateAction.Location = new System.Drawing.Point(659, 212);
-            this.txtFieldOnUpdateAction.Name = "txtFieldOnUpdateAction";
-            this.txtFieldOnUpdateAction.Size = new System.Drawing.Size(30, 20);
-            this.txtFieldOnUpdateAction.TabIndex = 4;
-            this.txtFieldOnUpdateAction.Text = "O";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(491, 213);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(128, 13);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "On Update action column";
+            this.chbAllCheckbox.AutoSize = true;
+            this.chbAllCheckbox.Location = new System.Drawing.Point(502, 464);
+            this.chbAllCheckbox.Name = "chbAllCheckbox";
+            this.chbAllCheckbox.Size = new System.Drawing.Size(180, 17);
+            this.chbAllCheckbox.TabIndex = 4;
+            this.chbAllCheckbox.Text = "Check/Uncheck all checkboxes";
+            this.chbAllCheckbox.UseVisualStyleBackColor = true;
+            this.chbAllCheckbox.CheckedChanged += new System.EventHandler(this.chbAllCheckbox_CheckedChanged);
             // 
             // frmGenerator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 505);
+            this.ClientSize = new System.Drawing.Size(731, 493);
+            this.Controls.Add(this.chbAllCheckbox);
             this.Controls.Add(this.grbFieldData);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.grbSettings);
@@ -760,7 +759,10 @@
             this.grbTableName.PerformLayout();
             this.grbFieldData.ResumeLayout(false);
             this.grbFieldData.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -813,14 +815,14 @@
         private System.Windows.Forms.CheckBox chbFieldPrimary;
         private System.Windows.Forms.ListBox lstExcludeSheets;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox chbFieldForeignKey;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtFieldForeignKeyCol;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtFieldOnDeleteAction;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox chbFieldForeignKey;
+        private System.Windows.Forms.TextBox txtFieldRefSourceFieldCol;
         private System.Windows.Forms.TextBox txtFieldRefTableNameCol;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtFieldOnUpdateAction;
+        private System.Windows.Forms.TextBox txtFieldForeignKeyCol;
+        private System.Windows.Forms.CheckBox chbAllCheckbox;
     }
 }

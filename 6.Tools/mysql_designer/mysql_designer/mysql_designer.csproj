@@ -158,6 +158,7 @@
   -->
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="ForeignKeyInfo.cs" />
     <Compile Include="frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
