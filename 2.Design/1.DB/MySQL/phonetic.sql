@@ -1,7 +1,7 @@
 CREATE TABLE tbl_phonetic(
 	id BIGINT(20) UNSIGNED NOT NULL COMMENT 'Mã phiên âm',
 	vocabulary_id BIGINT(20) UNSIGNED NOT NULL COMMENT 'Mã từ vựng',
-	class_id BIGINT(20) UNSIGNED NOT NULL COMMENT 'Mã lớp',
+	class_id TINYINT(3) UNSIGNED NOT NULL COMMENT 'Mã lớp',
 	phonetic VARCHAR(50)  NOT NULL COMMENT 'Phiên âm',
 	FOREIGN KEY (vocabulary_id) REFERENCES tbl_vocabulary(id),
 	FOREIGN KEY (class_id) REFERENCES tbl_class(id)

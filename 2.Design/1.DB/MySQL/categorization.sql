@@ -1,6 +1,6 @@
 CREATE TABLE tbl_categorization(
 	vocabulary_id BIGINT(20) UNSIGNED NOT NULL COMMENT 'Mã từ vựng',
-	class_id SMALLINT(6) UNSIGNED NOT NULL COMMENT 'Mã class',
+	class_id TINYINT(3) UNSIGNED NOT NULL COMMENT 'Mã class',
 	category_id BIGINT(20) UNSIGNED NOT NULL COMMENT 'Mã danh mục',
 	FOREIGN KEY (vocabulary_id) REFERENCES tbl_vocabulary(id),
 	FOREIGN KEY (class_id) REFERENCES tbl_class(id),
