@@ -1,0 +1,52 @@
+"General"
+{
+"ProjectType" = "local"
+"AutoLoadTemplate" = "%s.php;class.%s.php;"
+"IncludeDirs" = ""
+}
+"Configurations"
+{
+    "Release|PHP 5.6"
+    {
+    }
+}
+"Files"
+{
+    "inc"
+    {
+    "ProjRelPath" = "T"
+    }
+    "inc\\configure.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "inc\\urlhelper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "language"
+    {
+    "ProjRelPath" = "T"
+    }
+    "language\\index.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "language\\urlhelper.php"
+    {
+    "ProjRelPath" = "T"
+    }
+    "Web.licenseheader"
+    {
+    "ProjRelPath" = "T"
+    }
+}
+"ProjStartupServices"
+{
+}
+"Globals"
+{
+}
+"References"
+{
+}

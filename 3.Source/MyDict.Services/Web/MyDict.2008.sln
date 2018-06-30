@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{1863889A-00DF-4350-BA39-669CA949CB81}") = "MyDict", "MyDict.phpproj", "{F352E97F-2B42-44C7-8353-C380323F9D6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|PHP 5.6 = Release|PHP 5.6
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F352E97F-2B42-44C7-8353-C380323F9D6C}.Release|PHP 5.6.ActiveCfg = Release|PHP 5.6
+		{F352E97F-2B42-44C7-8353-C380323F9D6C}.Release|PHP 5.6.Deploy.0 = Release|PHP 5.6
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
