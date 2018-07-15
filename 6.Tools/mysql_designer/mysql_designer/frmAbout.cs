@@ -19,7 +19,16 @@ namespace mysql_designer
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-
+            System.Reflection.Assembly asy = System.Reflection.Assembly.GetExecutingAssembly();
+            if (asy != null)
+            {
+                System.Reflection.AssemblyName asyName = asy.GetName();
+                if(asyName!=null)
+                {
+                    string ver = string.Format("{0} {1}.{2}.{3}", asyName.Name, asyName.Version.Major, asyName.Version.Minor, asyName.Version.Revision);
+                    this.Text = ver;
+                }
+            }
         }
     }
 }

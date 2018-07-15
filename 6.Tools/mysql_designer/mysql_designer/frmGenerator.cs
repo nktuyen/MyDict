@@ -78,7 +78,7 @@ namespace mysql_designer
             }
         }
 
-        private string CreateTable(Excel.Worksheet sheet)
+        private string CreateTable(Excel.Worksheet sheet, ref Dictionary<string,string> tableNames)
         {
             if (null == sheet)
             {
@@ -105,7 +105,7 @@ namespace mysql_designer
                 catch(Exception ex)
                 {
                     Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                    return string.Empty;
+                    return "******Create Table " + tblName + " error:" + ex.Message;
                 }
             }
 
@@ -127,20 +127,23 @@ namespace mysql_designer
                 catch (Exception ex)
                 {
                     Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                    return string.Empty;
+                    return "******Create Table " + tblName + " error:" + ex.Message;
                 }
             }
 
-            string query = strCreate + " " + tblName + "("+Environment.NewLine;
+            string query = strCreate + " " + tableNames[tblName] + "("+Environment.NewLine;
             uint fieldIndex = 0;
             //Obtain fields
             Dictionary<string, string> primaryKeys = new Dictionary<string, string>();
             Dictionary<string, ForeignKeyInfo> foreignKeys = new Dictionary<string, ForeignKeyInfo>();
             List<string> uniqueKeys=new List<string>();
+            List<string> fieldNames = new List<string>();
+            List<string> fieldTypes = new List<string>();
             string fieldCommand = string.Empty;
             string fieldNotNull = string.Empty;
             string fieldAutoIncrement = string.Empty;
             int row = int.Parse(txtStartRow.Text);
+            int rowEnd = row;
             Excel.Range fieldNameCell = null;
             Excel.Range fieldTypeCell = null;
             Excel.Range fieldSizeCell = null;
@@ -177,7 +180,7 @@ namespace mysql_designer
                         catch(Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
 
@@ -195,7 +198,7 @@ namespace mysql_designer
                         catch (Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
 
@@ -217,7 +220,7 @@ namespace mysql_designer
                         catch (Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
                     if (fieldNotNull.Length > 0)
@@ -242,7 +245,7 @@ namespace mysql_designer
                         catch (Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
 
@@ -263,7 +266,7 @@ namespace mysql_designer
                         catch (Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
 
@@ -284,7 +287,7 @@ namespace mysql_designer
                         catch (Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
                     if ( (fieldAutoIncrement.Length > 0) && (!primaryKeys.ContainsKey(fieldNameCell.Text)) )  {
@@ -308,7 +311,7 @@ namespace mysql_designer
                         catch (Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
 
@@ -328,7 +331,7 @@ namespace mysql_designer
                                         fieldForeignTableValueCell = sheet.Range[txtFieldRefTableNameCol.Text + row];
                                         if(fieldForeignTableValueCell.Text != string.Empty)
                                         {
-                                            foreignInfo.ForeignTable = fieldForeignTableValueCell.Text;
+                                            foreignInfo.ForeignTable = tableNames[fieldForeignTableValueCell.Text];
 
                                             fieldForeignSourceFieldValueCell = sheet.Range[txtFieldRefSourceFieldCol.Text + row];
                                             if(null!= fieldForeignSourceFieldValueCell)
@@ -344,7 +347,7 @@ namespace mysql_designer
                                     catch(Exception ex)
                                     {
                                         Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                                        return string.Empty;
+                                        return "******Create Table " + tblName + " error:" + ex.Message;
                                     }
                                 }
                             }
@@ -352,7 +355,7 @@ namespace mysql_designer
                         catch (Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
 
@@ -370,7 +373,7 @@ namespace mysql_designer
                         catch (Exception ex)
                         {
                             Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                            return string.Empty;
+                            return "******Create Table " + tblName + " error:" + ex.Message;
                         }
                     }
 
@@ -378,6 +381,9 @@ namespace mysql_designer
                     {
                         query += ("," + Environment.NewLine);
                     }
+
+                    fieldNames.Add(fieldNameCell.Text);
+                    fieldTypes.Add(fieldTypeCell.Text);
 
                     query += fieldCommand;
                     fieldIndex++;
@@ -389,8 +395,10 @@ namespace mysql_designer
             catch(Exception ex)
             {
                 Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
-                return string.Empty;
+                return "******Create Table " + tblName + " error:" + ex.Message;
             }
+
+            rowEnd = row;
 
             if (foreignKeys.Count > 0)
             {
@@ -419,6 +427,8 @@ namespace mysql_designer
 
             if (tblComment.Length > 0)
             {
+                tblComment= tblComment.Replace("%TableName%", tblName);
+                tblComment = tblComment.Replace("%TableNameWithPrefix%", tableNames[tblName]);
                 query += " COMMENT='" + tblComment + "'";
             }
 
@@ -426,7 +436,7 @@ namespace mysql_designer
 
             if( (primaryKeys.Count > 0) || (uniqueKeys.Count > 0))
             {
-                query += (Environment.NewLine + "ALTER TABLE " + tblName + Environment.NewLine);
+                query += (Environment.NewLine + "ALTER TABLE " + tableNames[tblName] + Environment.NewLine);
                 ushort keyCount = 0;
                 foreach(string fieldName in primaryKeys.Values)
                 {
@@ -447,10 +457,102 @@ namespace mysql_designer
                     }
                     keyCount++;
 
-                    query += ("\tADD UNIQUE KEY UN_" + tblName + keyCount.ToString() + " (" + fieldName + ")");
+                    query += ("\tADD UNIQUE KEY UN_" + tableNames[tblName] + keyCount.ToString() + " (" + fieldName + ")");
                 }
 
                 query += ";";
+            }
+
+            if (chbDataColumn.Checked)
+            {
+                Dictionary<string, string> values = new Dictionary<string, string>();
+                List<string> dataTypes = new List<string>();
+                int rowStart = int.Parse(txtStartRow.Text);
+                Excel.Range dataCell = null;
+                string strInsert = string.Empty;
+                bool bFirst = false;
+                dataCell = sheet.Range[txtDataColumn.Text + rowStart];
+                int col = dataCell.Column;
+                while (true)
+                {
+                    values.Clear();
+                    dataTypes.Clear();
+                    for (row=rowStart;row<rowEnd;row++)
+                    {
+                        dataCell = sheet.Cells[row, col];
+                        if ((dataCell!=null) && (dataCell.Text != string.Empty))
+                        {
+                            values.Add(fieldNames[row - rowStart], dataCell.Text);
+                            dataTypes.Add(fieldTypes[row-rowStart]);
+                        }
+                    }
+                    if (values.Count <= 0)
+                        break;
+
+                    strInsert = string.Empty;
+                    foreach (string field in values.Keys)
+                    {
+                        if (strInsert == string.Empty)
+                        {
+                            strInsert = "INSERT INTO " + tableNames[tblName] + "(" + field;
+                        }
+                        else
+                        {
+                            strInsert += ("," + field);
+                        }
+                    }
+
+                    if (strInsert != string.Empty)
+                    {
+                        strInsert += ") VALUES(";
+                        bFirst = true;
+                        row = 0;
+                        foreach (string val in values.Values)
+                        {
+                            if (bFirst)
+                            {
+                                if ((dataTypes[row] == Constants.MYSQL_DATE) ||
+                                    (dataTypes[row] == Constants.MYSQL_DATETIME) ||
+                                    (dataTypes[row] == Constants.MYSQL_TIME) ||
+                                    (dataTypes[row] == Constants.MYSQL_VARCHAR) ||
+                                    (dataTypes[row] == Constants.MYSQL_TEXT))
+                                {
+                                    strInsert += "'" + val + "'";
+                                }
+                                else
+                                {
+                                    strInsert += val;
+                                }
+                                bFirst = false;
+                            }
+                            else
+                            {
+                                if ((dataTypes[row] == Constants.MYSQL_DATE) ||
+                                    (dataTypes[row] == Constants.MYSQL_DATETIME) ||
+                                    (dataTypes[row] == Constants.MYSQL_TIME) ||
+                                    (dataTypes[row] == Constants.MYSQL_VARCHAR) ||
+                                    (dataTypes[row] == Constants.MYSQL_TEXT))
+                                {
+                                    strInsert += ("," + "'" + val + "'");
+                                }
+                                else
+                                {
+                                    strInsert += ("," + val);
+                                }
+                            }
+                            row++;
+                        }
+
+                        strInsert += ");";
+                    }
+
+                    if(strInsert !=string.Empty)
+                    {
+                        query += Environment.NewLine + strInsert;
+                    }
+
+                    col++;
+                }
             }
 
             return query;
@@ -461,10 +563,37 @@ namespace mysql_designer
             Logger.Instance.Reset();
             frmScriptEditor frm = new frmScriptEditor();
             frm.Tables.Clear();
+            Dictionary<string, string> tableNames = new Dictionary<string, string>();
             if (radAllSheets.Checked)
             {
                 bool excluded = false;
                 foreach(Excel.Worksheet sheet in Book.Sheets)
+                {
+                    string tblName = string.Empty;
+
+                    if (radTableNameFromSheetName.Checked)
+                    {
+                        tblName = sheet.Name;
+                    }
+                    else if (radTableNameFromCell.Checked)
+                    {
+                        try
+                        {
+                            Excel.Range tblNameCell = sheet.Range[txtTableNameCellColumn.Text + txtTableNameCellRow.Text];
+                            if (null != tblNameCell)
+                            {
+                                tblName = tblNameCell.Text;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
+                        }
+                    }
+                    tableNames.Add(tblName, (chbPrefixTableName.Checked ? txtPrefixTableName.Text : string.Empty) + tblName);
+                }
+
+                foreach (Excel.Worksheet sheet in Book.Sheets)
                 {
                     excluded = false;
                     foreach(string item in lstExcludeSheets.SelectedItems)
@@ -477,7 +606,7 @@ namespace mysql_designer
                     }
                     if (!excluded)
                     {
-                        frm.Script += CreateTable(sheet) + Environment.NewLine;
+                        frm.Script += CreateTable(sheet, ref tableNames) + Environment.NewLine;
                         frm.Tables.Add(sheet.Name);
                     }
                 }
@@ -485,7 +614,30 @@ namespace mysql_designer
             else if (radCurrentSheet.Checked)
             {
                 Excel.Worksheet curSheet = Book.ActiveSheet;
-                frm.Script += CreateTable(curSheet);
+                string tblName = string.Empty;
+
+                if (radTableNameFromSheetName.Checked)
+                {
+                    tblName = curSheet.Name;
+                }
+                else if (radTableNameFromCell.Checked)
+                {
+                    try
+                    {
+                        Excel.Range tblNameCell = curSheet.Range[txtTableNameCellColumn.Text + txtTableNameCellRow.Text];
+                        if (null != tblNameCell)
+                        {
+                            tblName = tblNameCell.Text;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
+                    }
+                }
+                tableNames.Add(tblName, (chbPrefixTableName.Checked ? txtPrefixTableName.Text : string.Empty) + tblName);
+
+                frm.Script += CreateTable(curSheet, ref tableNames);
                 frm.Tables.Add(curSheet.Name);
             }
             else
@@ -506,7 +658,31 @@ namespace mysql_designer
                     return;
                 }
 
-                frm.Script += CreateTable(selectedSheet);
+                string tblName = string.Empty;
+
+                if (radTableNameFromSheetName.Checked)
+                {
+                    tblName = selectedSheet.Name;
+                }
+                else if (radTableNameFromCell.Checked)
+                {
+                    try
+                    {
+                        Excel.Range tblNameCell = selectedSheet.Range[txtTableNameCellColumn.Text + txtTableNameCellRow.Text];
+                        if (null != tblNameCell)
+                        {
+                            tblName = tblNameCell.Text;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Instance.Write(LogInfo.LogType.ERROR, ex.Message);
+                    }
+                }
+                tableNames.Add(tblName, (chbPrefixTableName.Checked ? txtPrefixTableName.Text : string.Empty) + tblName);
+
+
+                frm.Script += CreateTable(selectedSheet, ref tableNames);
                 frm.Tables.Add(sheetName);
             }
 
@@ -576,6 +752,11 @@ namespace mysql_designer
             txtFieldRefTableNameCol.Enabled = txtFieldRefSourceFieldCol.Enabled = txtFieldForeignKeyCol.Enabled = chbFieldForeignKey.Checked;
         }
 
+        private void chbDataCloumn_CheckedChanged(object sender, EventArgs e)
+        {
+            txtDataColumn.Enabled = chbDataColumn.Checked;
+        }
+
         private void chbAllCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             chbFieldSize.Checked =
@@ -587,7 +768,42 @@ namespace mysql_designer
             chbFieldDefaultValue.Checked =
             chbFieldRemark.Checked =
             chbFieldForeignKey.Checked =
+            chbDataColumn.Checked = 
             chbAllCheckbox.Checked;
+        }
+
+        private void chbPrefixTableName_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPrefixTableName.Enabled = chbPrefixTableName.Checked;
+        }
+
+        private void radTableCommentFromText_CheckedChanged(object sender, EventArgs e)
+        {
+            cbbMacros.Enabled = btnInsertMacro.Enabled = radTableCommentFromText.Checked;
+        }
+
+        private void radTableCommentFromCellText_CheckedChanged(object sender, EventArgs e)
+        {
+            cbbMacros.Enabled = btnInsertMacro.Enabled = radTableCommentFromText.Checked;
+        }
+
+        private void btnInsertMacro_Click(object sender, EventArgs e)
+        {
+            int nSel = cbbMacros.SelectedIndex;
+            if(nSel==-1)
+            {
+                MessageBox.Show(Constants.GetResourceString(Constants.MSG_PLEASE_CHOOSE_A_MACRO_TO_INSERT), Constants.GetResourceString(Constants.STR_APPNAME), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbbMacros.Focus();
+                return;
+            }
+
+            string strMacro = cbbMacros.Items[nSel] as string;
+            txtTableComment.Paste(strMacro);
+        }
+
+        private void txtTableComment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            radTableCommentFromText.Checked = true;
         }
     }
 }

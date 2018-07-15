@@ -37,6 +37,9 @@
             this.radAllSheets = new System.Windows.Forms.RadioButton();
             this.grbSettings = new System.Windows.Forms.GroupBox();
             this.grbTableComment = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbbMacros = new System.Windows.Forms.ComboBox();
+            this.btnInsertMacro = new System.Windows.Forms.Button();
             this.txtTableComment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,6 +48,8 @@
             this.radTableCommentFromCellText = new System.Windows.Forms.RadioButton();
             this.radTableCommentFromText = new System.Windows.Forms.RadioButton();
             this.grbTableName = new System.Windows.Forms.GroupBox();
+            this.txtPrefixTableName = new System.Windows.Forms.TextBox();
+            this.chbPrefixTableName = new System.Windows.Forms.CheckBox();
             this.lblTableNameCellColumn = new System.Windows.Forms.Label();
             this.lblTableNameCellRow = new System.Windows.Forms.Label();
             this.txtTableNameCellColumn = new System.Windows.Forms.TextBox();
@@ -65,6 +70,7 @@
             this.chbFieldPrimary = new System.Windows.Forms.CheckBox();
             this.chbFieldNullable = new System.Windows.Forms.CheckBox();
             this.chbFieldAttribute = new System.Windows.Forms.CheckBox();
+            this.chbDataColumn = new System.Windows.Forms.CheckBox();
             this.chbFieldRemark = new System.Windows.Forms.CheckBox();
             this.chbFieldDefaultValue = new System.Windows.Forms.CheckBox();
             this.chbFieldAutoIncre = new System.Windows.Forms.CheckBox();
@@ -75,6 +81,7 @@
             this.txtFieldNullableColumn = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFieldAttributeColumn = new System.Windows.Forms.TextBox();
+            this.txtDataColumn = new System.Windows.Forms.TextBox();
             this.txtFieldSizeColumn = new System.Windows.Forms.TextBox();
             this.txtFieldRemarkColumn = new System.Windows.Forms.TextBox();
             this.txtFieldDefValueColumn = new System.Windows.Forms.TextBox();
@@ -194,6 +201,9 @@
             // 
             // grbTableComment
             // 
+            this.grbTableComment.Controls.Add(this.label10);
+            this.grbTableComment.Controls.Add(this.cbbMacros);
+            this.grbTableComment.Controls.Add(this.btnInsertMacro);
             this.grbTableComment.Controls.Add(this.txtTableComment);
             this.grbTableComment.Controls.Add(this.label1);
             this.grbTableComment.Controls.Add(this.label2);
@@ -209,17 +219,51 @@
             this.grbTableComment.TabStop = false;
             this.grbTableComment.Text = "Table Comment";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(464, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(37, 13);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "Macro";
+            // 
+            // cbbMacros
+            // 
+            this.cbbMacros.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbMacros.Enabled = false;
+            this.cbbMacros.FormattingEnabled = true;
+            this.cbbMacros.Items.AddRange(new object[] {
+            "%TableName%",
+            "%TableNameWithPrefix%"});
+            this.cbbMacros.Location = new System.Drawing.Point(464, 30);
+            this.cbbMacros.Name = "cbbMacros";
+            this.cbbMacros.Size = new System.Drawing.Size(152, 21);
+            this.cbbMacros.TabIndex = 6;
+            // 
+            // btnInsertMacro
+            // 
+            this.btnInsertMacro.Enabled = false;
+            this.btnInsertMacro.Location = new System.Drawing.Point(616, 29);
+            this.btnInsertMacro.Name = "btnInsertMacro";
+            this.btnInsertMacro.Size = new System.Drawing.Size(42, 22);
+            this.btnInsertMacro.TabIndex = 5;
+            this.btnInsertMacro.Text = "Insert";
+            this.btnInsertMacro.UseVisualStyleBackColor = true;
+            this.btnInsertMacro.Click += new System.EventHandler(this.btnInsertMacro_Click);
+            // 
             // txtTableComment
             // 
-            this.txtTableComment.Location = new System.Drawing.Point(86, 30);
+            this.txtTableComment.Location = new System.Drawing.Point(346, 30);
             this.txtTableComment.Name = "txtTableComment";
             this.txtTableComment.Size = new System.Drawing.Size(110, 20);
             this.txtTableComment.TabIndex = 4;
+            this.txtTableComment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTableComment_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(372, 14);
+            this.label1.Location = new System.Drawing.Point(157, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 13);
             this.label1.TabIndex = 3;
@@ -228,7 +272,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(401, 14);
+            this.label2.Location = new System.Drawing.Point(186, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 2;
@@ -238,7 +282,7 @@
             // 
             this.txtTableCommentColumn.Enabled = false;
             this.txtTableCommentColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTableCommentColumn.Location = new System.Drawing.Point(369, 30);
+            this.txtTableCommentColumn.Location = new System.Drawing.Point(154, 30);
             this.txtTableCommentColumn.Name = "txtTableCommentColumn";
             this.txtTableCommentColumn.Size = new System.Drawing.Size(30, 20);
             this.txtTableCommentColumn.TabIndex = 2;
@@ -248,38 +292,42 @@
             // 
             this.txtTableCommentRow.Enabled = false;
             this.txtTableCommentRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTableCommentRow.Location = new System.Drawing.Point(400, 30);
+            this.txtTableCommentRow.Location = new System.Drawing.Point(185, 30);
             this.txtTableCommentRow.Name = "txtTableCommentRow";
             this.txtTableCommentRow.Size = new System.Drawing.Size(30, 20);
             this.txtTableCommentRow.TabIndex = 1;
-            this.txtTableCommentRow.Text = "3";
+            this.txtTableCommentRow.Text = "2";
             // 
             // radTableCommentFromCellText
             // 
             this.radTableCommentFromCellText.AutoSize = true;
             this.radTableCommentFromCellText.Checked = true;
             this.radTableCommentFromCellText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTableCommentFromCellText.Location = new System.Drawing.Point(221, 32);
+            this.radTableCommentFromCellText.Location = new System.Drawing.Point(38, 32);
             this.radTableCommentFromCellText.Name = "radTableCommentFromCellText";
             this.radTableCommentFromCellText.Size = new System.Drawing.Size(112, 17);
             this.radTableCommentFromCellText.TabIndex = 0;
             this.radTableCommentFromCellText.TabStop = true;
             this.radTableCommentFromCellText.Text = "From specified cell";
             this.radTableCommentFromCellText.UseVisualStyleBackColor = true;
+            this.radTableCommentFromCellText.CheckedChanged += new System.EventHandler(this.radTableCommentFromCellText_CheckedChanged);
             // 
             // radTableCommentFromText
             // 
             this.radTableCommentFromText.AutoSize = true;
             this.radTableCommentFromText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTableCommentFromText.Location = new System.Drawing.Point(38, 32);
+            this.radTableCommentFromText.Location = new System.Drawing.Point(252, 32);
             this.radTableCommentFromText.Name = "radTableCommentFromText";
-            this.radTableCommentFromText.Size = new System.Drawing.Size(46, 17);
+            this.radTableCommentFromText.Size = new System.Drawing.Size(93, 17);
             this.radTableCommentFromText.TabIndex = 0;
-            this.radTableCommentFromText.Text = "Text";
+            this.radTableCommentFromText.Text = "Specified Text";
             this.radTableCommentFromText.UseVisualStyleBackColor = true;
+            this.radTableCommentFromText.CheckedChanged += new System.EventHandler(this.radTableCommentFromText_CheckedChanged);
             // 
             // grbTableName
             // 
+            this.grbTableName.Controls.Add(this.txtPrefixTableName);
+            this.grbTableName.Controls.Add(this.chbPrefixTableName);
             this.grbTableName.Controls.Add(this.lblTableNameCellColumn);
             this.grbTableName.Controls.Add(this.lblTableNameCellRow);
             this.grbTableName.Controls.Add(this.txtTableNameCellColumn);
@@ -294,10 +342,29 @@
             this.grbTableName.TabStop = false;
             this.grbTableName.Text = "Table Name";
             // 
+            // txtPrefixTableName
+            // 
+            this.txtPrefixTableName.Enabled = false;
+            this.txtPrefixTableName.Location = new System.Drawing.Point(519, 30);
+            this.txtPrefixTableName.Name = "txtPrefixTableName";
+            this.txtPrefixTableName.Size = new System.Drawing.Size(139, 20);
+            this.txtPrefixTableName.TabIndex = 5;
+            // 
+            // chbPrefixTableName
+            // 
+            this.chbPrefixTableName.AutoSize = true;
+            this.chbPrefixTableName.Location = new System.Drawing.Point(464, 32);
+            this.chbPrefixTableName.Name = "chbPrefixTableName";
+            this.chbPrefixTableName.Size = new System.Drawing.Size(52, 17);
+            this.chbPrefixTableName.TabIndex = 4;
+            this.chbPrefixTableName.Text = "Prefix";
+            this.chbPrefixTableName.UseVisualStyleBackColor = true;
+            this.chbPrefixTableName.CheckedChanged += new System.EventHandler(this.chbPrefixTableName_CheckedChanged);
+            // 
             // lblTableNameCellColumn
             // 
             this.lblTableNameCellColumn.AutoSize = true;
-            this.lblTableNameCellColumn.Location = new System.Drawing.Point(373, 12);
+            this.lblTableNameCellColumn.Location = new System.Drawing.Point(156, 13);
             this.lblTableNameCellColumn.Name = "lblTableNameCellColumn";
             this.lblTableNameCellColumn.Size = new System.Drawing.Size(22, 13);
             this.lblTableNameCellColumn.TabIndex = 3;
@@ -306,7 +373,7 @@
             // lblTableNameCellRow
             // 
             this.lblTableNameCellRow.AutoSize = true;
-            this.lblTableNameCellRow.Location = new System.Drawing.Point(401, 12);
+            this.lblTableNameCellRow.Location = new System.Drawing.Point(184, 13);
             this.lblTableNameCellRow.Name = "lblTableNameCellRow";
             this.lblTableNameCellRow.Size = new System.Drawing.Size(29, 13);
             this.lblTableNameCellRow.TabIndex = 2;
@@ -316,7 +383,7 @@
             // 
             this.txtTableNameCellColumn.Enabled = false;
             this.txtTableNameCellColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTableNameCellColumn.Location = new System.Drawing.Point(369, 29);
+            this.txtTableNameCellColumn.Location = new System.Drawing.Point(152, 30);
             this.txtTableNameCellColumn.Name = "txtTableNameCellColumn";
             this.txtTableNameCellColumn.Size = new System.Drawing.Size(30, 20);
             this.txtTableNameCellColumn.TabIndex = 2;
@@ -326,22 +393,20 @@
             // 
             this.txtTableNameCellRow.Enabled = false;
             this.txtTableNameCellRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTableNameCellRow.Location = new System.Drawing.Point(400, 29);
+            this.txtTableNameCellRow.Location = new System.Drawing.Point(183, 30);
             this.txtTableNameCellRow.Name = "txtTableNameCellRow";
             this.txtTableNameCellRow.Size = new System.Drawing.Size(30, 20);
             this.txtTableNameCellRow.TabIndex = 1;
-            this.txtTableNameCellRow.Text = "2";
+            this.txtTableNameCellRow.Text = "1";
             // 
             // radTableNameFromCell
             // 
             this.radTableNameFromCell.AutoSize = true;
-            this.radTableNameFromCell.Checked = true;
             this.radTableNameFromCell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTableNameFromCell.Location = new System.Drawing.Point(221, 31);
+            this.radTableNameFromCell.Location = new System.Drawing.Point(38, 32);
             this.radTableNameFromCell.Name = "radTableNameFromCell";
             this.radTableNameFromCell.Size = new System.Drawing.Size(112, 17);
             this.radTableNameFromCell.TabIndex = 0;
-            this.radTableNameFromCell.TabStop = true;
             this.radTableNameFromCell.Text = "From specified cell";
             this.radTableNameFromCell.UseVisualStyleBackColor = true;
             this.radTableNameFromCell.CheckedChanged += new System.EventHandler(this.radTableNameFromCell_CheckedChanged);
@@ -349,18 +414,20 @@
             // radTableNameFromSheetName
             // 
             this.radTableNameFromSheetName.AutoSize = true;
+            this.radTableNameFromSheetName.Checked = true;
             this.radTableNameFromSheetName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radTableNameFromSheetName.Location = new System.Drawing.Point(38, 31);
+            this.radTableNameFromSheetName.Location = new System.Drawing.Point(252, 32);
             this.radTableNameFromSheetName.Name = "radTableNameFromSheetName";
             this.radTableNameFromSheetName.Size = new System.Drawing.Size(115, 17);
             this.radTableNameFromSheetName.TabIndex = 0;
+            this.radTableNameFromSheetName.TabStop = true;
             this.radTableNameFromSheetName.Text = "From Sheet\'s name";
             this.radTableNameFromSheetName.UseVisualStyleBackColor = true;
             this.radTableNameFromSheetName.CheckedChanged += new System.EventHandler(this.radTableNameFromSheetName_CheckedChanged);
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(334, 460);
+            this.btnGenerate.Location = new System.Drawing.Point(334, 462);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 25);
             this.btnGenerate.TabIndex = 2;
@@ -375,6 +442,7 @@
             this.grbFieldData.Controls.Add(this.chbFieldPrimary);
             this.grbFieldData.Controls.Add(this.chbFieldNullable);
             this.grbFieldData.Controls.Add(this.chbFieldAttribute);
+            this.grbFieldData.Controls.Add(this.chbDataColumn);
             this.grbFieldData.Controls.Add(this.chbFieldRemark);
             this.grbFieldData.Controls.Add(this.chbFieldDefaultValue);
             this.grbFieldData.Controls.Add(this.chbFieldAutoIncre);
@@ -385,6 +453,7 @@
             this.grbFieldData.Controls.Add(this.txtFieldNullableColumn);
             this.grbFieldData.Controls.Add(this.label4);
             this.grbFieldData.Controls.Add(this.txtFieldAttributeColumn);
+            this.grbFieldData.Controls.Add(this.txtDataColumn);
             this.grbFieldData.Controls.Add(this.txtFieldSizeColumn);
             this.grbFieldData.Controls.Add(this.txtFieldRemarkColumn);
             this.grbFieldData.Controls.Add(this.txtFieldDefValueColumn);
@@ -396,7 +465,7 @@
             this.grbFieldData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbFieldData.Location = new System.Drawing.Point(12, 235);
             this.grbFieldData.Name = "grbFieldData";
-            this.grbFieldData.Size = new System.Drawing.Size(707, 218);
+            this.grbFieldData.Size = new System.Drawing.Size(707, 221);
             this.grbFieldData.TabIndex = 3;
             this.grbFieldData.TabStop = false;
             this.grbFieldData.Text = "Field Settings";
@@ -536,6 +605,18 @@
             this.chbFieldAttribute.UseVisualStyleBackColor = true;
             this.chbFieldAttribute.CheckedChanged += new System.EventHandler(this.chbFieldAttribute_CheckedChanged);
             // 
+            // chbDataColumn
+            // 
+            this.chbDataColumn.AutoSize = true;
+            this.chbDataColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbDataColumn.Location = new System.Drawing.Point(34, 176);
+            this.chbDataColumn.Name = "chbDataColumn";
+            this.chbDataColumn.Size = new System.Drawing.Size(87, 17);
+            this.chbDataColumn.TabIndex = 6;
+            this.chbDataColumn.Text = "Data Column";
+            this.chbDataColumn.UseVisualStyleBackColor = true;
+            this.chbDataColumn.CheckedChanged += new System.EventHandler(this.chbDataCloumn_CheckedChanged);
+            // 
             // chbFieldRemark
             // 
             this.chbFieldRemark.AutoSize = true;
@@ -644,6 +725,16 @@
             this.txtFieldAttributeColumn.TabIndex = 4;
             this.txtFieldAttributeColumn.Text = "E";
             // 
+            // txtDataColumn
+            // 
+            this.txtDataColumn.Enabled = false;
+            this.txtDataColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataColumn.Location = new System.Drawing.Point(34, 195);
+            this.txtDataColumn.Name = "txtDataColumn";
+            this.txtDataColumn.Size = new System.Drawing.Size(30, 20);
+            this.txtDataColumn.TabIndex = 4;
+            this.txtDataColumn.Text = "O";
+            // 
             // txtFieldSizeColumn
             // 
             this.txtFieldSizeColumn.Enabled = false;
@@ -709,7 +800,7 @@
             this.txtStartRow.Name = "txtStartRow";
             this.txtStartRow.Size = new System.Drawing.Size(33, 20);
             this.txtStartRow.TabIndex = 1;
-            this.txtStartRow.Text = "6";
+            this.txtStartRow.Text = "5";
             // 
             // label3
             // 
@@ -824,5 +915,12 @@
         private System.Windows.Forms.TextBox txtFieldRefTableNameCol;
         private System.Windows.Forms.TextBox txtFieldForeignKeyCol;
         private System.Windows.Forms.CheckBox chbAllCheckbox;
+        private System.Windows.Forms.CheckBox chbDataColumn;
+        private System.Windows.Forms.TextBox txtDataColumn;
+        private System.Windows.Forms.CheckBox chbPrefixTableName;
+        private System.Windows.Forms.TextBox txtPrefixTableName;
+        private System.Windows.Forms.ComboBox cbbMacros;
+        private System.Windows.Forms.Button btnInsertMacro;
+        private System.Windows.Forms.Label label10;
     }
 }

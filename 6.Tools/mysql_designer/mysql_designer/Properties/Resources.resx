@@ -178,4 +178,7 @@
   <data name="mysql_designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mysql_designer.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MSG_PLEASE_CHOOSE_A_MACRO_TO_INSERT" xml:space="preserve">
+    <value>Please choose a macro to insert.</value>
+  </data>
 </root>

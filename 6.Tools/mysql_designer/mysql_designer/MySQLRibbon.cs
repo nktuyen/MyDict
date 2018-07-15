@@ -106,10 +106,7 @@ namespace mysql_designer
                 {
                     frmGenerator frm = new frmGenerator();
 					frm.Book = ExcelHelper.Instance.Application.ActiveWorkbook;
-                    if(frm.ShowDialog() == DialogResult.OK)
-                    {
-                        
-                    }
+                    frm.ShowDialog();
                 }
 
                 else if(string.Compare(control.Id, "MySQL_Designer_btnAbout") == 0)
