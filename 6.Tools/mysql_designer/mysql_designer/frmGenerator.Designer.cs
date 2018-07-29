@@ -344,15 +344,17 @@
             // 
             // txtPrefixTableName
             // 
-            this.txtPrefixTableName.Enabled = false;
             this.txtPrefixTableName.Location = new System.Drawing.Point(519, 30);
             this.txtPrefixTableName.Name = "txtPrefixTableName";
             this.txtPrefixTableName.Size = new System.Drawing.Size(139, 20);
             this.txtPrefixTableName.TabIndex = 5;
+            this.txtPrefixTableName.Text = "tbl_";
             // 
             // chbPrefixTableName
             // 
             this.chbPrefixTableName.AutoSize = true;
+            this.chbPrefixTableName.Checked = true;
+            this.chbPrefixTableName.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbPrefixTableName.Location = new System.Drawing.Point(464, 32);
             this.chbPrefixTableName.Name = "chbPrefixTableName";
             this.chbPrefixTableName.Size = new System.Drawing.Size(52, 17);
